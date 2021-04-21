@@ -135,22 +135,10 @@
 </layers>
 <board>
 <plain>
-<wire x1="0" y1="0" x2="46.66" y2="0" width="0.254" layer="20"/>
-<wire x1="46.66" y1="0" x2="46.66" y2="29.2" width="0" layer="20"/>
-<wire x1="46.66" y1="29.2" x2="0" y2="29.2" width="0" layer="20"/>
-<wire x1="0" y1="29.2" x2="0" y2="0" width="0.254" layer="20"/>
-<text x="33.02" y="25.4" size="1.016" layer="21">CLARG MAIN BOARD
-ELEC 327 S 2021</text>
-<text x="1.27" y="16.51" size="0.8128" layer="21" rot="R90">T</text>
-<text x="1.27" y="13.97" size="0.8128" layer="21" rot="R90">R</text>
-<text x="1.27" y="11.43" size="0.8128" layer="21" rot="R90">V</text>
-<text x="1.27" y="8.89" size="0.8128" layer="21" rot="R90">G</text>
-<text x="1.27" y="24.13" size="0.6096" layer="21" rot="R90">CLK</text>
-<text x="1.27" y="20.32" size="0.6096" layer="21" rot="R90">SDA</text>
-<text x="10.16" y="1.27" size="0.6096" layer="21">MISO</text>
-<text x="12.7" y="1.27" size="0.6096" layer="21">MOSI</text>
-<text x="15.24" y="1.27" size="0.6096" layer="21">CLK</text>
-<text x="19.05" y="1.27" size="0.6096" layer="21">CS</text>
+<wire x1="0" y1="0" x2="100" y2="0" width="0" layer="20"/>
+<wire x1="100" y1="0" x2="100" y2="80" width="0" layer="20"/>
+<wire x1="100" y1="80" x2="0" y2="80" width="0" layer="20"/>
+<wire x1="0" y1="80" x2="0" y2="0" width="0" layer="20"/>
 </plain>
 <libraries>
 <library name="pinhead" urn="urn:adsk.eagle:library:325">
@@ -1450,14 +1438,12 @@ Library for Lab2</description>
 <rectangle x1="2.145" y1="-3.22" x2="2.405" y2="-2.25" layer="27"/>
 <rectangle x1="2.795" y1="-3.22" x2="3.055" y2="-2.25" layer="27"/>
 </package>
-</packages>
-</library>
-<library name="Personal">
-<packages>
-<package name="3002BATTERY">
-<smd name="P$1" x="0" y="0" dx="3.96" dy="3.96" layer="1"/>
-<smd name="P$2" x="12.825" y="0" dx="5.08" dy="5.08" layer="1"/>
-<smd name="P$3" x="-12.825" y="0" dx="5.08" dy="5.08" layer="1"/>
+<package name="BU2032SM">
+<smd name="P$1" x="-14.605" y="0" dx="4.318" dy="3.302" layer="1" rot="R90"/>
+<smd name="P$2" x="14.605" y="0" dx="4.318" dy="3.302" layer="1" rot="R90"/>
+<circle x="0" y="0" radius="11.049" width="0.127" layer="51"/>
+<text x="-8.89" y="-1.27" size="5.08" layer="21" font="fixed">+</text>
+<text x="5.08" y="-1.27" size="5.08" layer="21" font="fixed">-</text>
 </package>
 </packages>
 </library>
@@ -1470,13 +1456,18 @@ Library for Lab2</description>
 <class number="0" name="default" width="0" drill="0">
 </class>
 </classes>
-<designrules name="AdvancedCircuitsBarebones">
-<description language="en">&lt;b&gt;Advanced Circuits Barebones Process Rules&lt;/b&gt;
+<designrules name="default">
+<description language="en">&lt;b&gt;EAGLE Design Rules&lt;/b&gt;
 &lt;p&gt;
-These are design rules for the Advanced Circuits barebones PCBs (4pcb.com).</description>
+The default Design Rules have been set to cover
+a wide range of applications. Your particular design
+may have different requirements, so please make the
+necessary adjustments and save your customized
+design rules under a new name.
+</description>
 <param name="layerSetup" value="(1*16)"/>
 <param name="mtCopper" value="0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm"/>
-<param name="mtIsolate" value="1.5mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm"/>
+<param name="mtIsolate" value="0.15mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm"/>
 <param name="mdWireWire" value="6mil"/>
 <param name="mdWirePad" value="6mil"/>
 <param name="mdWireVia" value="6mil"/>
@@ -1486,13 +1477,13 @@ These are design rules for the Advanced Circuits barebones PCBs (4pcb.com).</des
 <param name="mdSmdPad" value="6mil"/>
 <param name="mdSmdVia" value="6mil"/>
 <param name="mdSmdSmd" value="6mil"/>
-<param name="mdViaViaSameLayer" value="8mil"/>
+<param name="mdViaViaSameLayer" value="6mil"/>
 <param name="mnLayersViaInSmd" value="2"/>
-<param name="mdCopperDimension" value="10mil"/>
+<param name="mdCopperDimension" value="40mil"/>
 <param name="mdDrill" value="6mil"/>
 <param name="mdSmdStop" value="0mil"/>
 <param name="msWidth" value="6mil"/>
-<param name="msDrill" value="20mil"/>
+<param name="msDrill" value="0.35mm"/>
 <param name="msMicroVia" value="9.99mm"/>
 <param name="msBlindViaRatio" value="0.5"/>
 <param name="rvPadTop" value="0.25"/>
@@ -1502,15 +1493,15 @@ These are design rules for the Advanced Circuits barebones PCBs (4pcb.com).</des
 <param name="rvViaInner" value="0.25"/>
 <param name="rvMicroViaOuter" value="0.25"/>
 <param name="rvMicroViaInner" value="0.25"/>
-<param name="rlMinPadTop" value="12mil"/>
+<param name="rlMinPadTop" value="10mil"/>
 <param name="rlMaxPadTop" value="20mil"/>
 <param name="rlMinPadInner" value="10mil"/>
 <param name="rlMaxPadInner" value="20mil"/>
-<param name="rlMinPadBottom" value="12mil"/>
+<param name="rlMinPadBottom" value="10mil"/>
 <param name="rlMaxPadBottom" value="20mil"/>
-<param name="rlMinViaOuter" value="10mil"/>
+<param name="rlMinViaOuter" value="8mil"/>
 <param name="rlMaxViaOuter" value="20mil"/>
-<param name="rlMinViaInner" value="10mil"/>
+<param name="rlMinViaInner" value="8mil"/>
 <param name="rlMaxViaInner" value="20mil"/>
 <param name="rlMinMicroViaOuter" value="4mil"/>
 <param name="rlMaxMicroViaOuter" value="20mil"/>
@@ -1527,7 +1518,7 @@ These are design rules for the Advanced Circuits barebones PCBs (4pcb.com).</des
 <param name="mlMaxStopFrame" value="4mil"/>
 <param name="mlMinCreamFrame" value="0mil"/>
 <param name="mlMaxCreamFrame" value="0mil"/>
-<param name="mlViaStopLimit" value="25mil"/>
+<param name="mlViaStopLimit" value="0mil"/>
 <param name="srRoundness" value="0"/>
 <param name="srMinRoundness" value="0mil"/>
 <param name="srMaxRoundness" value="0mil"/>
@@ -1544,7 +1535,7 @@ These are design rules for the Advanced Circuits barebones PCBs (4pcb.com).</des
 <param name="checkWireStubs" value="1"/>
 <param name="checkPolygonWidth" value="0"/>
 <param name="useDiameter" value="13"/>
-<param name="maxErrors" value="50"/>
+<param name="maxErrors" value="999999"/>
 </designrules>
 <autorouter>
 <pass name="Default">
@@ -1643,15 +1634,15 @@ These are design rules for the Advanced Circuits barebones PCBs (4pcb.com).</des
 </pass>
 </autorouter>
 <elements>
-<element name="BUTTONGND" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X01" package3d_urn="urn:adsk.eagle:package:22485/2" value="" x="35.56" y="3.81" smashed="yes">
-<attribute name="NAME" x="34.2138" y="5.6388" size="1.27" layer="25" ratio="10"/>
-<attribute name="POPULARITY" value="64" x="59.69" y="-17.78" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="34.29" y="0.635" size="1.27" layer="27"/>
+<element name="BUTTONGND" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X01" package3d_urn="urn:adsk.eagle:package:22485/2" value="" x="35.56" y="2.54" smashed="yes">
+<attribute name="NAME" x="34.2138" y="4.3688" size="1.27" layer="25" ratio="10"/>
+<attribute name="POPULARITY" value="64" x="59.69" y="-19.05" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="34.29" y="-0.635" size="1.27" layer="27"/>
 </element>
-<element name="BUTTONS" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X03" package3d_urn="urn:adsk.eagle:package:22458/2" value="" x="27.94" y="3.81" smashed="yes">
-<attribute name="NAME" x="24.0538" y="5.6388" size="1.27" layer="25" ratio="10"/>
-<attribute name="POPULARITY" value="92" x="46.99" y="-12.7" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="24.13" y="0.635" size="1.27" layer="27"/>
+<element name="BUTTONS" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X03" package3d_urn="urn:adsk.eagle:package:22458/2" value="" x="27.94" y="2.54" smashed="yes">
+<attribute name="NAME" x="24.0538" y="4.3688" size="1.27" layer="25" ratio="10"/>
+<attribute name="POPULARITY" value="92" x="46.99" y="-13.97" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="24.13" y="-0.635" size="1.27" layer="27"/>
 </element>
 <element name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C1206" package3d_urn="urn:adsk.eagle:package:23618/2" value="" x="24.13" y="8.89" smashed="yes" rot="R90">
 <attribute name="NAME" x="22.86" y="7.62" size="1.27" layer="25" rot="R90"/>
@@ -1672,7 +1663,7 @@ These are design rules for the Advanced Circuits barebones PCBs (4pcb.com).</des
 <attribute name="VALUE" x="36.83" y="7.62" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="I2C" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X02" package3d_urn="urn:adsk.eagle:package:22435/2" value="" x="3.81" y="22.86" smashed="yes" rot="R90">
-<attribute name="NAME" x="5.1562" y="19.7612" size="1.27" layer="25" ratio="10" rot="R180"/>
+<attribute name="NAME" x="1.9812" y="20.2438" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="POPULARITY" value="98" x="20.32" y="49.53" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="6.985" y="20.32" size="1.27" layer="27" rot="R90"/>
 </element>
@@ -1694,48 +1685,37 @@ These are design rules for the Advanced Circuits barebones PCBs (4pcb.com).</des
 <attribute name="SPICEPREFIX" value="R" x="41.91" y="-1.27" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="10.16" y="22.86" size="1.27" layer="27"/>
 </element>
-<element name="SPI" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X04" package3d_urn="urn:adsk.eagle:package:22407/2" value="" x="15.24" y="3.81" smashed="yes">
-<attribute name="NAME" x="10.0838" y="5.6388" size="1.27" layer="25" ratio="10"/>
-<attribute name="POPULARITY" value="91" x="34.29" y="-6.35" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="10.16" y="0.635" size="1.27" layer="27"/>
+<element name="SPI" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X04" package3d_urn="urn:adsk.eagle:package:22407/2" value="" x="15.24" y="2.54" smashed="yes">
+<attribute name="NAME" x="10.0838" y="4.3688" size="1.27" layer="25" ratio="10"/>
+<attribute name="POPULARITY" value="91" x="34.29" y="-7.62" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="10.16" y="-0.635" size="1.27" layer="27"/>
 </element>
 <element name="U$1" library="ELEC327" package="PW20" value="MSP430G2XX3TSSOP" x="24.13" y="19.05" smashed="yes">
 <attribute name="NAME" x="21.2051" y="19.7001" size="1.27" layer="25"/>
 <attribute name="VALUE" x="20.8551" y="17.4499" size="1.27" layer="27"/>
 </element>
 <element name="VRTG" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X04" package3d_urn="urn:adsk.eagle:package:22407/2" value="" x="3.81" y="12.7" smashed="yes" rot="R90">
-<attribute name="NAME" x="5.1562" y="7.0612" size="1.27" layer="25" ratio="10" rot="R180"/>
+<attribute name="NAME" x="1.9812" y="7.5438" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="POPULARITY" value="91" x="13.97" y="43.18" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="6.985" y="7.62" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="U$2" library="Personal" package="3002BATTERY" value="3002BATTERY" x="22.86" y="15.24" smashed="yes" rot="MR0"/>
+<element name="BAT1" library="ELEC327" package="BU2032SM" value="" x="20.32" y="13.97" smashed="yes" rot="MR180"/>
 </elements>
 <signals>
 <signal name="GND">
 <contactref element="VRTG" pad="1"/>
 <contactref element="U$1" pad="20"/>
 <contactref element="BUTTONGND" pad="1"/>
+<contactref element="BAT1" pad="P$2"/>
 <contactref element="C1" pad="2"/>
 <contactref element="C3" pad="2"/>
 <contactref element="C2" pad="2"/>
-<polygon width="0.254" layer="16">
-<vertex x="0" y="0"/>
-<vertex x="0" y="29.21"/>
-<vertex x="46.99" y="29.21"/>
-<vertex x="46.99" y="0"/>
-</polygon>
-<wire x1="34.29" y1="10.29" x2="36.7" y2="10.29" width="0.254" layer="1"/>
-<wire x1="36.7" y1="10.29" x2="36.83" y2="10.16" width="0.254" layer="1"/>
-<via x="36.83" y="10.16" extent="1-16" drill="0.508" diameter="0.65"/>
-<wire x1="29.21" y1="10.29" x2="29.21" y2="12.7" width="0.254" layer="1"/>
-<via x="29.21" y="12.7" extent="1-16" drill="0.508" diameter="0.65"/>
-<wire x1="24.13" y1="10.29" x2="22.73" y2="8.89" width="0.254" layer="1"/>
-<wire x1="22.73" y1="8.89" x2="21.59" y2="8.89" width="0.254" layer="1"/>
-<via x="21.59" y="8.89" extent="1-16" drill="0.508" diameter="0.65"/>
-<wire x1="21.2051" y1="21.95" x2="20.8451" y2="21.59" width="0.254" layer="1"/>
-<wire x1="20.8451" y1="21.59" x2="19.05" y2="21.59" width="0.254" layer="1"/>
-<via x="19.05" y="21.59" extent="1-16" drill="0.508" diameter="0.65"/>
-<contactref element="U$2" pad="P$1"/>
+<wire x1="34.29" y1="10.29" x2="34.925" y2="13.97" width="0" layer="19" extent="1-16"/>
+<wire x1="29.21" y1="10.29" x2="34.29" y2="10.29" width="0" layer="19" extent="1-1"/>
+<wire x1="24.13" y1="10.29" x2="29.21" y2="10.29" width="0" layer="19" extent="1-1"/>
+<wire x1="35.56" y1="2.54" x2="34.29" y2="10.29" width="0" layer="19" extent="1-1"/>
+<wire x1="21.2051" y1="21.95" x2="24.13" y2="10.29" width="0" layer="19" extent="1-1"/>
+<wire x1="3.81" y1="8.89" x2="24.13" y2="10.29" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="VCC">
 <contactref element="VRTG" pad="2"/>
@@ -1743,132 +1723,110 @@ These are design rules for the Advanced Circuits barebones PCBs (4pcb.com).</des
 <contactref element="R1" pad="2"/>
 <contactref element="R2" pad="2"/>
 <contactref element="R3" pad="2"/>
-<wire x1="15.24" y1="16.51" x2="15.24" y2="16.358" width="0.254" layer="1"/>
-<wire x1="15.24" y1="16.358" x2="11.582" y2="12.7" width="0.254" layer="1"/>
-<wire x1="21.2051" y1="16.1499" x2="15.6001" y2="16.1499" width="0.254" layer="1"/>
-<wire x1="15.6001" y1="16.1499" x2="15.24" y2="16.51" width="0.254" layer="1"/>
-<via x="15.24" y="25.4" extent="1-16" drill="0.508" diameter="0.65"/>
-<wire x1="15.24" y1="25.4" x2="12.852" y2="25.4" width="0.254" layer="1"/>
-<wire x1="15.24" y1="16.51" x2="15.24" y2="20.32" width="0.254" layer="16"/>
-<via x="15.24" y="16.51" extent="1-16" drill="0.508" diameter="0.65"/>
-<wire x1="15.24" y1="25.4" x2="15.24" y2="20.32" width="0.254" layer="16"/>
-<via x="15.24" y="20.32" extent="1-16" drill="0.508" diameter="0.65"/>
-<wire x1="15.24" y1="20.32" x2="12.852" y2="20.32" width="0.254" layer="1"/>
-<contactref element="U$2" pad="P$2"/>
-<contactref element="U$2" pad="P$3"/>
-<wire x1="10.035" y1="15.24" x2="6.225" y2="11.43" width="0.1524" layer="16"/>
-<wire x1="6.225" y1="11.43" x2="3.81" y2="11.43" width="0.1524" layer="16"/>
-<wire x1="10.035" y1="15.24" x2="11.305" y2="16.51" width="0.1524" layer="16"/>
-<wire x1="11.305" y1="16.51" x2="15.24" y2="16.51" width="0.1524" layer="16"/>
-<wire x1="35.685" y1="15.24" x2="27.1432875" y2="15.24" width="0.1524" layer="16"/>
-<wire x1="27.1432875" y1="15.24" x2="24.9346875" y2="13.0314" width="0.1524" layer="16"/>
-<wire x1="24.9346875" y1="13.0314" x2="18.7186" y2="13.0314" width="0.1524" layer="16"/>
-<wire x1="18.7186" y1="13.0314" x2="15.24" y2="16.51" width="0.1524" layer="16"/>
+<contactref element="BAT1" pad="P$1"/>
+<wire x1="21.2051" y1="16.1499" x2="5.715" y2="13.97" width="0" layer="19" extent="1-16"/>
+<wire x1="12.852" y1="20.32" x2="21.2051" y2="16.1499" width="0" layer="19" extent="1-1"/>
+<wire x1="12.852" y1="25.4" x2="12.852" y2="20.32" width="0" layer="19" extent="1-1"/>
+<wire x1="11.582" y1="12.7" x2="12.852" y2="20.32" width="0" layer="19" extent="1-1"/>
+<wire x1="3.81" y1="11.43" x2="11.582" y2="12.7" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RST/SBWTDIO">
 <contactref element="VRTG" pad="3"/>
 <contactref element="U$1" pad="16"/>
 <contactref element="R1" pad="1"/>
-<wire x1="3.81" y1="13.97" x2="7.468" y2="13.97" width="0.254" layer="1"/>
-<wire x1="7.468" y1="13.97" x2="8.738" y2="12.7" width="0.254" layer="1"/>
-<wire x1="8.738" y1="12.7" x2="12.624" y2="16.586" width="0.254" layer="1"/>
-<wire x1="12.624" y1="16.586" x2="13.818" y2="17.78" width="0.254" layer="1"/>
-<wire x1="13.818" y1="17.78" x2="21.59" y2="17.78" width="0.254" layer="1"/>
-<wire x1="21.59" y1="17.78" x2="23.805" y2="19.995" width="0.254" layer="1"/>
-<wire x1="23.805" y1="19.995" x2="23.805" y2="21.95" width="0.254" layer="1"/>
+<wire x1="3.81" y1="13.97" x2="7.468" y2="13.97" width="0.1524" layer="1"/>
+<wire x1="7.468" y1="13.97" x2="8.738" y2="12.7" width="0.1524" layer="1"/>
+<wire x1="8.738" y1="12.7" x2="23.805" y2="21.95" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="TEST/SBWTCK">
 <contactref element="VRTG" pad="4"/>
 <contactref element="U$1" pad="17"/>
-<wire x1="3.81" y1="16.51" x2="6.35" y2="19.05" width="0.254" layer="1"/>
-<wire x1="20.75003125" y1="19.05" x2="23.155" y2="21.45496875" width="0.254" layer="1"/>
-<wire x1="23.155" y1="21.45496875" x2="23.155" y2="21.95" width="0.254" layer="1"/>
-<wire x1="6.35" y1="19.05" x2="20.75003125" y2="19.05" width="0.254" layer="1"/>
+<wire x1="3.81" y1="16.51" x2="23.155" y2="21.95" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="BUTTON1">
 <contactref element="U$1" pad="8"/>
 <contactref element="C1" pad="1"/>
 <contactref element="BUTTONS" pad="1"/>
-<wire x1="25.4" y1="3.81" x2="24.13" y2="5.08" width="0.254" layer="1"/>
-<wire x1="24.13" y1="5.08" x2="24.13" y2="7.49" width="0.254" layer="1"/>
-<wire x1="25.755" y1="16.1499" x2="25.755" y2="9.115" width="0.254" layer="1"/>
-<wire x1="25.755" y1="9.115" x2="24.13" y2="7.49" width="0.254" layer="1"/>
+<wire x1="25.4" y1="2.54" x2="24.13" y2="3.81" width="0.1524" layer="1"/>
+<wire x1="24.13" y1="3.81" x2="24.13" y2="7.49" width="0.1524" layer="1"/>
+<wire x1="25.755" y1="16.1499" x2="25.755" y2="9.115" width="0.1524" layer="1"/>
+<wire x1="25.755" y1="9.115" x2="24.13" y2="7.49" width="0.1524" layer="1"/>
 </signal>
 <signal name="BUTTON2">
 <contactref element="U$1" pad="9"/>
 <contactref element="C2" pad="1"/>
 <contactref element="BUTTONS" pad="2"/>
-<wire x1="26.405" y1="16.1499" x2="26.405" y2="10.295" width="0.254" layer="1"/>
-<wire x1="26.405" y1="10.295" x2="29.145" y2="7.555" width="0.254" layer="1"/>
-<wire x1="29.145" y1="7.555" x2="29.21" y2="7.49" width="0.254" layer="1"/>
-<wire x1="27.94" y1="3.81" x2="27.94" y2="6.35" width="0.254" layer="1"/>
-<wire x1="27.94" y1="6.35" x2="29.145" y2="7.555" width="0.254" layer="1"/>
+<wire x1="26.405" y1="16.1499" x2="26.405" y2="10.295" width="0.1524" layer="1"/>
+<wire x1="26.405" y1="10.295" x2="29.145" y2="7.555" width="0.1524" layer="1"/>
+<wire x1="29.145" y1="7.555" x2="29.21" y2="7.49" width="0.1524" layer="1"/>
+<wire x1="27.94" y1="2.54" x2="27.94" y2="6.35" width="0.1524" layer="1"/>
+<wire x1="27.94" y1="6.35" x2="29.145" y2="7.555" width="0.1524" layer="1"/>
 </signal>
 <signal name="BUTTON3">
 <contactref element="U$1" pad="10"/>
 <contactref element="C3" pad="1"/>
 <contactref element="BUTTONS" pad="3"/>
-<wire x1="30.48" y1="3.81" x2="30.61" y2="3.81" width="0.254" layer="1"/>
-<wire x1="30.61" y1="3.81" x2="34.29" y2="7.49" width="0.254" layer="1"/>
-<wire x1="34.29" y1="7.49" x2="34.16" y2="7.62" width="0.254" layer="1"/>
-<wire x1="34.16" y1="7.62" x2="31.75" y2="7.62" width="0.254" layer="1"/>
-<wire x1="31.75" y1="7.62" x2="31.75" y2="13.97" width="0.254" layer="1"/>
-<wire x1="31.75" y1="13.97" x2="27.94" y2="13.97" width="0.254" layer="1"/>
-<wire x1="27.94" y1="13.97" x2="27.0549" y2="14.8551" width="0.254" layer="1"/>
-<wire x1="27.0549" y1="14.8551" x2="27.0549" y2="16.1499" width="0.254" layer="1"/>
+<wire x1="30.48" y1="2.54" x2="30.48" y2="3.68" width="0.1524" layer="1"/>
+<wire x1="30.48" y1="3.68" x2="34.29" y2="7.49" width="0.1524" layer="1"/>
+<wire x1="34.29" y1="7.49" x2="34.16" y2="7.62" width="0.1524" layer="1"/>
+<wire x1="34.16" y1="7.62" x2="31.75" y2="7.62" width="0.1524" layer="1"/>
+<wire x1="31.75" y1="7.62" x2="31.75" y2="13.97" width="0.1524" layer="1"/>
+<wire x1="31.75" y1="13.97" x2="27.94" y2="13.97" width="0.1524" layer="1"/>
+<wire x1="27.94" y1="13.97" x2="27.0549" y2="14.8551" width="0.1524" layer="1"/>
+<wire x1="27.0549" y1="14.8551" x2="27.0549" y2="16.1499" width="0.1524" layer="1"/>
 </signal>
 <signal name="SPICS">
 <contactref element="U$1" pad="7"/>
 <contactref element="SPI" pad="4"/>
-<wire x1="19.05" y1="3.81" x2="19.05" y2="7.62" width="0.254" layer="1"/>
-<wire x1="25.105" y1="13.675" x2="25.105" y2="16.1499" width="0.254" layer="1"/>
-<wire x1="19.05" y1="7.62" x2="25.105" y2="13.675" width="0.254" layer="1"/>
+<wire x1="19.05" y1="2.54" x2="19.05" y2="7.62" width="0.1524" layer="1"/>
+<wire x1="25.105" y1="13.675" x2="25.105" y2="16.1499" width="0.1524" layer="1"/>
+<wire x1="19.05" y1="7.62" x2="25.105" y2="13.675" width="0.1524" layer="1"/>
 </signal>
 <signal name="SPICLK">
 <contactref element="U$1" pad="6"/>
 <contactref element="SPI" pad="3"/>
-<wire x1="16.51" y1="3.81" x2="16.51" y2="6.35" width="0.254" layer="1"/>
-<wire x1="24.455" y1="14.295" x2="24.455" y2="16.1499" width="0.254" layer="1"/>
-<wire x1="16.51" y1="6.35" x2="24.455" y2="14.295" width="0.254" layer="1"/>
+<wire x1="16.51" y1="2.54" x2="16.51" y2="6.35" width="0.1524" layer="1"/>
+<wire x1="24.455" y1="14.295" x2="24.455" y2="16.1499" width="0.1524" layer="1"/>
+<wire x1="16.51" y1="6.35" x2="24.455" y2="14.295" width="0.1524" layer="1"/>
 </signal>
 <signal name="SPISIMO">
 <contactref element="U$1" pad="4"/>
 <contactref element="SPI" pad="2"/>
-<wire x1="13.97" y1="3.81" x2="13.97" y2="5.08" width="0.254" layer="1"/>
-<wire x1="23.155" y1="14.265" x2="23.155" y2="16.1499" width="0.254" layer="1"/>
-<wire x1="13.97" y1="5.08" x2="23.155" y2="14.265" width="0.254" layer="1"/>
+<wire x1="13.97" y1="2.54" x2="13.97" y2="5.08" width="0.1524" layer="1"/>
+<wire x1="23.155" y1="14.265" x2="23.155" y2="16.1499" width="0.1524" layer="1"/>
+<wire x1="13.97" y1="5.08" x2="23.155" y2="14.265" width="0.1524" layer="1"/>
 </signal>
 <signal name="SPISOMI">
 <contactref element="U$1" pad="3"/>
 <contactref element="SPI" pad="1"/>
-<wire x1="11.43" y1="3.81" x2="11.43" y2="5.08" width="0.254" layer="1"/>
-<wire x1="11.43" y1="5.08" x2="19.05" y2="12.7" width="0.254" layer="1"/>
-<wire x1="19.05" y1="12.7" x2="20.32" y2="12.7" width="0.254" layer="1"/>
-<wire x1="20.32" y1="12.7" x2="22.505" y2="14.885" width="0.254" layer="1"/>
-<wire x1="22.505" y1="14.885" x2="22.505" y2="16.1499" width="0.254" layer="1"/>
+<wire x1="11.43" y1="2.54" x2="11.43" y2="5.08" width="0.1524" layer="1"/>
+<wire x1="11.43" y1="5.08" x2="19.05" y2="12.7" width="0.1524" layer="1"/>
+<wire x1="19.05" y1="12.7" x2="20.32" y2="12.7" width="0.1524" layer="1"/>
+<wire x1="20.32" y1="12.7" x2="22.505" y2="14.885" width="0.1524" layer="1"/>
+<wire x1="22.505" y1="14.885" x2="22.505" y2="16.1499" width="0.1524" layer="1"/>
 </signal>
 <signal name="I2CSDA">
 <contactref element="U$1" pad="15"/>
 <contactref element="R2" pad="1"/>
 <contactref element="I2C" pad="1"/>
-<wire x1="3.81" y1="21.59" x2="8.738" y2="21.59" width="0.254" layer="1"/>
-<wire x1="8.738" y1="21.59" x2="10.008" y2="20.32" width="0.254" layer="1"/>
-<wire x1="24.455" y1="22.535" x2="24.455" y2="21.95" width="0.254" layer="1"/>
-<wire x1="12.7" y1="22.86" x2="24.13" y2="22.86" width="0.254" layer="1"/>
-<wire x1="24.13" y1="22.86" x2="24.455" y2="22.535" width="0.254" layer="1"/>
-<wire x1="10.008" y1="20.32" x2="12.548" y2="22.86" width="0.254" layer="1"/>
-<wire x1="12.548" y1="22.86" x2="12.7" y2="22.86" width="0.254" layer="1"/>
+<wire x1="3.81" y1="21.59" x2="8.738" y2="21.59" width="0.1524" layer="1"/>
+<wire x1="8.738" y1="21.59" x2="10.008" y2="20.32" width="0.1524" layer="1"/>
+<wire x1="10.008" y1="20.32" x2="10.16" y2="20.472" width="0.1524" layer="1"/>
+<wire x1="10.16" y1="20.472" x2="10.16" y2="22.86" width="0.1524" layer="1"/>
+<wire x1="10.16" y1="22.86" x2="24.13" y2="22.86" width="0.1524" layer="1"/>
+<wire x1="24.13" y1="22.86" x2="24.455" y2="22.535" width="0.1524" layer="1"/>
+<wire x1="24.455" y1="22.535" x2="24.455" y2="21.95" width="0.1524" layer="1"/>
 </signal>
 <signal name="I2CCLK">
 <contactref element="U$1" pad="14"/>
 <contactref element="R3" pad="1"/>
 <contactref element="I2C" pad="2"/>
-<wire x1="3.81" y1="24.13" x2="5.08" y2="25.4" width="0.254" layer="1"/>
-<wire x1="5.08" y1="25.4" x2="10.008" y2="25.4" width="0.254" layer="1"/>
-<wire x1="10.008" y1="25.4" x2="11.278" y2="24.13" width="0.254" layer="1"/>
-<wire x1="11.278" y1="24.13" x2="24.13" y2="24.13" width="0.254" layer="1"/>
-<wire x1="24.13" y1="24.13" x2="25.105" y2="23.155" width="0.254" layer="1"/>
-<wire x1="25.105" y1="23.155" x2="25.105" y2="21.95" width="0.254" layer="1"/>
+<wire x1="3.81" y1="24.13" x2="5.08" y2="25.4" width="0.1524" layer="1"/>
+<wire x1="5.08" y1="25.4" x2="10.008" y2="25.4" width="0.1524" layer="1"/>
+<wire x1="10.008" y1="25.4" x2="11.278" y2="24.13" width="0.1524" layer="1"/>
+<wire x1="11.278" y1="24.13" x2="24.13" y2="24.13" width="0.1524" layer="1"/>
+<wire x1="24.13" y1="24.13" x2="25.105" y2="23.155" width="0.1524" layer="1"/>
+<wire x1="25.105" y1="23.155" x2="25.105" y2="21.95" width="0.1524" layer="1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>
@@ -1881,10 +1839,6 @@ These are design rules for the Advanced Circuits barebones PCBs (4pcb.com).</des
 </board>
 </drawing>
 <compatibility>
-<note version="6.3" minversion="6.2.2" severity="warning">
-Since Version 6.2.2 text objects can contain more than one line,
-which will not be processed correctly with this version.
-</note>
 <note version="8.2" severity="warning">
 Since Version 8.2, EAGLE supports online libraries. The ids
 of those online libraries will not be understood (or retained)

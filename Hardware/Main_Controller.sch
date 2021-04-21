@@ -220,57 +220,6 @@ Library for Lab2</description>
 <rectangle x1="2.145" y1="-3.22" x2="2.405" y2="-2.25" layer="27"/>
 <rectangle x1="2.795" y1="-3.22" x2="3.055" y2="-2.25" layer="27"/>
 </package>
-<package name="BU2032SM">
-<smd name="P$1" x="-14.605" y="0" dx="4.318" dy="3.302" layer="1" rot="R90"/>
-<smd name="P$2" x="14.605" y="0" dx="4.318" dy="3.302" layer="1" rot="R90"/>
-<circle x="0" y="0" radius="11.049" width="0.127" layer="51"/>
-<text x="-8.89" y="-1.27" size="5.08" layer="21" font="fixed">+</text>
-<text x="5.08" y="-1.27" size="5.08" layer="21" font="fixed">-</text>
-</package>
-<package name="BATTERY_PACK_2AA">
-<pad name="3V" x="7.5" y="25" drill="1" diameter="2.54" shape="square"/>
-<pad name="GND" x="-7.5" y="25" drill="1" diameter="2.54" shape="square"/>
-<wire x1="-16.5" y1="29" x2="-16.5" y2="-29" width="0.4064" layer="21"/>
-<wire x1="-16.5" y1="-29" x2="-15.5" y2="-30" width="0.4064" layer="21" curve="90"/>
-<wire x1="-15.5" y1="-30" x2="15.5" y2="-30" width="0.4064" layer="21"/>
-<wire x1="15.5" y1="-30" x2="16.5" y2="-29" width="0.4064" layer="21" curve="90"/>
-<wire x1="16.5" y1="-29" x2="16.5" y2="29" width="0.4064" layer="21"/>
-<wire x1="16.5" y1="29" x2="15.5" y2="30" width="0.4064" layer="21" curve="90"/>
-<wire x1="15.5" y1="30" x2="-15.5" y2="30" width="0.4064" layer="21"/>
-<wire x1="-15.5" y1="30" x2="-16.5" y2="29" width="0.4064" layer="21" curve="90"/>
-<wire x1="-11.43" y1="22.86" x2="-2.54" y2="22.86" width="0.4064" layer="21"/>
-<wire x1="-2.54" y1="22.86" x2="-10.795" y2="22.225" width="0.4064" layer="21"/>
-<wire x1="-10.795" y1="22.225" x2="-3.81" y2="20.955" width="0.4064" layer="21"/>
-<wire x1="-3.81" y1="20.955" x2="-9.525" y2="19.685" width="0.4064" layer="21"/>
-<wire x1="-9.525" y1="19.685" x2="-5.08" y2="19.05" width="0.4064" layer="21"/>
-<wire x1="-5.08" y1="19.05" x2="-8.255" y2="17.78" width="0.4064" layer="21"/>
-<wire x1="-8.255" y1="17.78" x2="-5.715" y2="17.78" width="0.4064" layer="21"/>
-<wire x1="12.7" y1="-26.67" x2="3.81" y2="-26.67" width="0.4064" layer="21"/>
-<wire x1="3.81" y1="-26.67" x2="12.065" y2="-26.035" width="0.4064" layer="21"/>
-<wire x1="12.065" y1="-26.035" x2="5.08" y2="-24.765" width="0.4064" layer="21"/>
-<wire x1="5.08" y1="-24.765" x2="10.795" y2="-23.495" width="0.4064" layer="21"/>
-<wire x1="10.795" y1="-23.495" x2="6.35" y2="-22.86" width="0.4064" layer="21"/>
-<wire x1="6.35" y1="-22.86" x2="9.525" y2="-21.59" width="0.4064" layer="21"/>
-<wire x1="9.525" y1="-21.59" x2="6.985" y2="-21.59" width="0.4064" layer="21"/>
-<wire x1="-11.43" y1="13.97" x2="-1.27" y2="13.97" width="0.4064" layer="21"/>
-<wire x1="-1.27" y1="13.97" x2="-1.27" y2="-16.51" width="0.4064" layer="21"/>
-<wire x1="-1.27" y1="-16.51" x2="-3.81" y2="-16.51" width="0.4064" layer="21"/>
-<wire x1="-3.81" y1="-16.51" x2="-8.89" y2="-16.51" width="0.4064" layer="21"/>
-<wire x1="-8.89" y1="-16.51" x2="-11.43" y2="-16.51" width="0.4064" layer="21"/>
-<wire x1="-11.43" y1="-16.51" x2="-11.43" y2="13.97" width="0.4064" layer="21"/>
-<wire x1="-8.89" y1="-16.51" x2="-8.89" y2="-19.05" width="0.4064" layer="21"/>
-<wire x1="-8.89" y1="-19.05" x2="-3.81" y2="-19.05" width="0.4064" layer="21"/>
-<wire x1="-3.81" y1="-19.05" x2="-3.81" y2="-16.51" width="0.4064" layer="21"/>
-<wire x1="12.7" y1="-19.05" x2="2.54" y2="-19.05" width="0.4064" layer="21"/>
-<wire x1="2.54" y1="-19.05" x2="2.54" y2="11.43" width="0.4064" layer="21"/>
-<wire x1="2.54" y1="11.43" x2="5.08" y2="11.43" width="0.4064" layer="21"/>
-<wire x1="5.08" y1="11.43" x2="10.16" y2="11.43" width="0.4064" layer="21"/>
-<wire x1="10.16" y1="11.43" x2="12.7" y2="11.43" width="0.4064" layer="21"/>
-<wire x1="12.7" y1="11.43" x2="12.7" y2="-19.05" width="0.4064" layer="21"/>
-<wire x1="10.16" y1="11.43" x2="10.16" y2="13.97" width="0.4064" layer="21"/>
-<wire x1="10.16" y1="13.97" x2="5.08" y2="13.97" width="0.4064" layer="21"/>
-<wire x1="5.08" y1="13.97" x2="5.08" y2="11.43" width="0.4064" layer="21"/>
-</package>
 </packages>
 <symbols>
 <symbol name="G2XX3---N/PW20">
@@ -321,17 +270,6 @@ Library for Lab2</description>
 <text x="12.7" y="-15.24" size="0.7112" layer="95" font="vector">P2.3</text>
 <text x="12.7" y="-12.7" size="0.7112" layer="95" font="vector">P2.4</text>
 <text x="12.7" y="-10.16" size="0.7112" layer="95" font="vector">P2.5</text>
-</symbol>
-<symbol name="BATTERY">
-<wire x1="-1.27" y1="3.81" x2="-1.27" y2="-3.81" width="0.4064" layer="94"/>
-<wire x1="0" y1="1.27" x2="0" y2="-1.27" width="0.4064" layer="94"/>
-<wire x1="1.27" y1="3.81" x2="1.27" y2="-3.81" width="0.4064" layer="94"/>
-<wire x1="2.54" y1="1.27" x2="2.54" y2="-1.27" width="0.4064" layer="94"/>
-<wire x1="-2.54" y1="0" x2="-1.524" y2="0" width="0.1524" layer="94"/>
-<pin name="+" x="-5.08" y="0" visible="off" length="short" direction="pwr"/>
-<pin name="-" x="5.08" y="0" visible="off" length="short" direction="pwr" rot="R180"/>
-<text x="-3.81" y="5.08" size="1.778" layer="95">&gt;NAME</text>
-<text x="-3.81" y="-6.35" size="1.778" layer="96">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -392,34 +330,6 @@ PDIP (N) 20 Pin Package &lt;br&gt;</description>
 <connect gate="G$1" pin="7" pad="7"/>
 <connect gate="G$1" pin="8" pad="8"/>
 <connect gate="G$1" pin="9" pad="9"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="BATTERY" prefix="BAT" uservalue="yes">
-<description>&lt;b&gt;Battery Holders&lt;/b&gt;&lt;br&gt;
-Various common sizes : AA, AAA, 20mm coin cell and 12mm coin cell.&lt;br&gt;
-20MM_4LEGS, BATT-10373</description>
-<gates>
-<gate name="G$1" symbol="BATTERY" x="0" y="0"/>
-</gates>
-<devices>
-<device name="BU2032SM" package="BU2032SM">
-<connects>
-<connect gate="G$1" pin="+" pad="P$1"/>
-<connect gate="G$1" pin="-" pad="P$2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-<device name="" package="BATTERY_PACK_2AA">
-<connects>
-<connect gate="G$1" pin="+" pad="3V"/>
-<connect gate="G$1" pin="-" pad="GND"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -8688,6 +8598,47 @@ Source: AVX .. aphvc.pdf</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="Personal">
+<packages>
+<package name="3002BATTERY">
+<smd name="P$1" x="0" y="0" dx="3.96" dy="3.96" layer="1"/>
+<smd name="P$2" x="12.825" y="0" dx="5.08" dy="5.08" layer="1"/>
+<smd name="P$3" x="-12.825" y="0" dx="5.08" dy="5.08" layer="1"/>
+</package>
+</packages>
+<symbols>
+<symbol name="COINBATTERY">
+<circle x="0" y="0" radius="3.5921" width="0.1524" layer="94"/>
+<pin name="POS" x="0" y="7.62" length="middle" rot="R270"/>
+<pin name="NEG" x="0" y="-7.62" length="middle" rot="R90"/>
+<text x="-2.54" y="5.08" size="1.778" layer="97">+</text>
+<text x="-2.54" y="-5.08" size="1.778" layer="97">-</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="3002BATTERY">
+<description>3002 Battery Holder
+&lt;br&gt;
+&lt;a href=https://www.digikey.com/en/products/detail/keystone-electronics/3002/227444&gt;Digikey&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=https://www.digikey.com/htmldatasheets/production/846798/0/0/1/3002-drawing.html&gt;Drawing&lt;/a&gt;</description>
+<gates>
+<gate name="G$1" symbol="COINBATTERY" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="3002BATTERY">
+<connects>
+<connect gate="G$1" pin="NEG" pad="P$1"/>
+<connect gate="G$1" pin="POS" pad="P$2 P$3"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -8719,9 +8670,9 @@ Source: AVX .. aphvc.pdf</description>
 <part name="R3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R1206" package3d_urn="urn:adsk.eagle:package:23540/2"/>
 <part name="P+4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 <part name="P+5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
-<part name="BAT1" library="ELEC327" deviceset="BATTERY" device="BU2032SM"/>
 <part name="P+6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 <part name="GND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="U$2" library="Personal" deviceset="3002BATTERY" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8815,16 +8766,13 @@ Source: AVX .. aphvc.pdf</description>
 <instance part="P+5" gate="VCC" x="116.84" y="53.34" smashed="yes">
 <attribute name="VALUE" x="114.3" y="50.8" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="BAT1" gate="G$1" x="276.86" y="38.1" smashed="yes" rot="R270">
-<attribute name="NAME" x="281.94" y="41.91" size="1.778" layer="95" rot="R270"/>
-<attribute name="VALUE" x="270.51" y="41.91" size="1.778" layer="96" rot="R270"/>
+<instance part="P+6" gate="VCC" x="281.94" y="55.88" smashed="yes">
+<attribute name="VALUE" x="279.4" y="53.34" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="P+6" gate="VCC" x="276.86" y="53.34" smashed="yes">
-<attribute name="VALUE" x="274.32" y="50.8" size="1.778" layer="96" rot="R90"/>
+<instance part="GND5" gate="1" x="281.94" y="22.86" smashed="yes">
+<attribute name="VALUE" x="279.4" y="20.32" size="1.778" layer="96"/>
 </instance>
-<instance part="GND5" gate="1" x="276.86" y="25.4" smashed="yes">
-<attribute name="VALUE" x="274.32" y="22.86" size="1.778" layer="96"/>
-</instance>
+<instance part="U$2" gate="G$1" x="281.94" y="38.1" smashed="yes"/>
 </instances>
 <busses>
 </busses>
@@ -8848,9 +8796,9 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="GND4" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="BAT1" gate="G$1" pin="-"/>
-<wire x1="276.86" y1="33.02" x2="276.86" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="281.94" y1="30.48" x2="281.94" y2="25.4" width="0.1524" layer="91"/>
 <pinref part="GND5" gate="1" pin="GND"/>
+<pinref part="U$2" gate="G$1" pin="NEG"/>
 </segment>
 <segment>
 <pinref part="C1" gate="G$1" pin="2"/>
@@ -8899,9 +8847,9 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="P+5" gate="VCC" pin="VCC"/>
 </segment>
 <segment>
-<pinref part="BAT1" gate="G$1" pin="+"/>
-<wire x1="276.86" y1="43.18" x2="276.86" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="281.94" y1="45.72" x2="281.94" y2="53.34" width="0.1524" layer="91"/>
 <pinref part="P+6" gate="VCC" pin="VCC"/>
+<pinref part="U$2" gate="G$1" pin="POS"/>
 </segment>
 </net>
 <net name="RST/SBWTDIO" class="0">

@@ -8673,6 +8673,9 @@ Source: AVX .. aphvc.pdf</description>
 <part name="P+6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 <part name="GND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="U$2" library="Personal" deviceset="3002BATTERY" device=""/>
+<part name="CSUPPLY" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-US" device="C1206" package3d_urn="urn:adsk.eagle:package:23618/2"/>
+<part name="P+7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
+<part name="GND6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8773,6 +8776,16 @@ Source: AVX .. aphvc.pdf</description>
 <attribute name="VALUE" x="279.4" y="20.32" size="1.778" layer="96"/>
 </instance>
 <instance part="U$2" gate="G$1" x="281.94" y="38.1" smashed="yes"/>
+<instance part="CSUPPLY" gate="G$1" x="299.72" y="38.1" smashed="yes">
+<attribute name="NAME" x="300.736" y="38.735" size="1.778" layer="95"/>
+<attribute name="VALUE" x="300.736" y="33.909" size="1.778" layer="96"/>
+</instance>
+<instance part="P+7" gate="VCC" x="299.72" y="48.26" smashed="yes">
+<attribute name="VALUE" x="297.18" y="45.72" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="GND6" gate="1" x="299.72" y="25.4" smashed="yes">
+<attribute name="VALUE" x="297.18" y="22.86" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -8815,6 +8828,11 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="12.7" y1="17.78" x2="22.86" y2="17.78" width="0.1524" layer="91"/>
 <label x="15.24" y="20.32" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="GND6" gate="1" pin="GND"/>
+<pinref part="CSUPPLY" gate="G$1" pin="2"/>
+<wire x1="299.72" y1="27.94" x2="299.72" y2="33.02" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="VCC" class="0">
 <segment>
@@ -8850,6 +8868,11 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="281.94" y1="45.72" x2="281.94" y2="53.34" width="0.1524" layer="91"/>
 <pinref part="P+6" gate="VCC" pin="VCC"/>
 <pinref part="U$2" gate="G$1" pin="POS"/>
+</segment>
+<segment>
+<pinref part="CSUPPLY" gate="G$1" pin="1"/>
+<pinref part="P+7" gate="VCC" pin="VCC"/>
+<wire x1="299.72" y1="40.64" x2="299.72" y2="45.72" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="RST/SBWTDIO" class="0">

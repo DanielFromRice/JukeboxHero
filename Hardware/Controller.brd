@@ -139,8 +139,10 @@
 <wire x1="40" y1="0" x2="40.05" y2="25.95" width="0" layer="20"/>
 <wire x1="40.05" y1="25.95" x2="0" y2="26" width="0" layer="20"/>
 <wire x1="0" y1="26" x2="0" y2="0" width="0" layer="20"/>
-<text x="28.2" y="22.95" size="0.6096" layer="21">CLARG CONDUCTING BOARD
-ELEC 327 S 2021</text>
+<text x="28.25" y="20.05" size="0.8128" layer="21">CLARG 
+CONDUCTING BOARD
+ELEC 327
+S 2021</text>
 <text x="35.55" y="1.4" size="0.8128" layer="21">VCC</text>
 <text x="30.05" y="1.5" size="0.8128" layer="21">GND</text>
 <text x="17.25" y="0.65" size="0.8128" layer="21" rot="R90">BB0</text>

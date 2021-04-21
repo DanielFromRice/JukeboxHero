@@ -139,7 +139,7 @@
 <wire x1="46.66" y1="0" x2="46.66" y2="29.2" width="0" layer="20"/>
 <wire x1="46.66" y1="29.2" x2="0" y2="29.2" width="0" layer="20"/>
 <wire x1="0" y1="29.2" x2="0" y2="0" width="0.254" layer="20"/>
-<text x="33.02" y="25.4" size="1.016" layer="21">CLARG MAIN BOARD
+<text x="24.13" y="24.13" size="1.6764" layer="21">CLARG MAIN BOARD
 ELEC 327 S 2021</text>
 <text x="1.27" y="16.51" size="0.8128" layer="21" rot="R90">T</text>
 <text x="1.27" y="13.97" size="0.8128" layer="21" rot="R90">R</text>

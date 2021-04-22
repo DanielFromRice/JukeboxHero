@@ -144,10 +144,10 @@
 </layers>
 <board>
 <plain>
-<wire x1="-1.27" y1="-1.27" x2="39.04" y2="-1.27" width="0" layer="20"/>
-<wire x1="39.04" y1="-1.27" x2="39.04" y2="30.47" width="0" layer="20"/>
+<wire x1="-1.27" y1="-2.54" x2="39.04" y2="-2.54" width="0" layer="20"/>
+<wire x1="39.04" y1="-2.54" x2="39.04" y2="30.47" width="0" layer="20"/>
 <wire x1="39.04" y1="30.47" x2="-1.27" y2="30.47" width="0" layer="20"/>
-<wire x1="-1.27" y1="30.47" x2="-1.27" y2="-1.27" width="0" layer="20"/>
+<wire x1="-1.27" y1="30.47" x2="-1.27" y2="-2.54" width="0" layer="20"/>
 <text x="1.27" y="13.97" size="1.778" layer="121">CLARG
 Music Board
 ELEC 327
@@ -1739,30 +1739,31 @@ These are design rules for the Advanced Circuits barebones PCBs (4pcb.com).</des
 <contactref element="U$3" pad="P$3"/>
 <contactref element="D2" pad="VDD"/>
 <wire x1="7.772" y1="25.4" x2="11.3" y2="25.4" width="0.2032" layer="1"/>
-<via x="11.43" y="10.16" extent="1-16" drill="0.55"/>
-<wire x1="11.43" y1="10.16" x2="12.7" y2="10.16" width="0.2032" layer="1"/>
-<wire x1="11.43" y1="10.16" x2="6.225" y2="10.16" width="0.254" layer="16"/>
 <wire x1="14.3301" y1="3.4499" x2="12.7" y2="5.08" width="0.254" layer="1"/>
 <wire x1="14.3301" y1="3.4499" x2="16.1251" y2="3.4499" width="0.254" layer="1"/>
-<via x="16.51" y="20.32" extent="1-16" drill="0.55"/>
-<wire x1="16.51" y1="20.32" x2="17.78" y2="21.59" width="0.254" layer="1"/>
-<wire x1="16.51" y1="20.32" x2="13.97" y2="17.78" width="0.254" layer="16"/>
-<wire x1="13.97" y1="17.78" x2="13.97" y2="13.97" width="0.254" layer="16"/>
-<wire x1="31.875" y1="10.16" x2="25.4" y2="10.16" width="0.254" layer="16"/>
 <wire x1="12.7" y1="5.08" x2="12.7" y2="10.16" width="0.254" layer="1"/>
 <wire x1="11.3" y1="25.4" x2="15.11" y2="21.59" width="0.254" layer="1"/>
-<wire x1="15.11" y1="21.59" x2="17.78" y2="21.59" width="0.254" layer="1"/>
-<wire x1="17.78" y1="21.59" x2="26.67" y2="21.59" width="0.254" layer="1"/>
+<wire x1="15.11" y1="21.59" x2="22.86" y2="21.59" width="0.254" layer="1"/>
+<wire x1="22.86" y1="21.59" x2="26.67" y2="21.59" width="0.254" layer="1"/>
 <wire x1="26.67" y1="21.59" x2="29.21" y2="24.13" width="0.254" layer="1"/>
 <wire x1="29.21" y1="24.13" x2="29.21" y2="25.4" width="0.254" layer="1"/>
-<wire x1="21.59" y1="13.97" x2="13.97" y2="13.97" width="0.254" layer="16"/>
-<wire x1="25.4" y1="10.16" x2="21.59" y2="13.97" width="0.254" layer="16"/>
-<wire x1="12.7" y1="10.16" x2="10.16" y2="12.7" width="0.254" layer="1"/>
-<wire x1="10.16" y1="12.7" x2="5.08" y2="12.7" width="0.254" layer="1"/>
+<wire x1="10.16" y1="12.7" x2="12.7" y2="10.16" width="0.254" layer="1"/>
+<wire x1="5.08" y1="12.7" x2="10.16" y2="12.7" width="0.254" layer="1"/>
 <wire x1="5.08" y1="12.7" x2="3.81" y2="13.97" width="0.254" layer="1"/>
 <wire x1="3.81" y1="13.97" x2="3.81" y2="14.39" width="0.254" layer="1"/>
-<wire x1="13.97" y1="13.97" x2="11.43" y2="11.43" width="0.254" layer="16"/>
-<wire x1="11.43" y1="11.43" x2="11.43" y2="10.16" width="0.254" layer="16"/>
+<wire x1="22.86" y1="21.59" x2="20.32" y2="24.13" width="0.254" layer="1"/>
+<wire x1="20.32" y1="24.13" x2="19.05" y2="24.13" width="0.254" layer="1"/>
+<via x="19.05" y="24.13" extent="1-16" drill="0.55"/>
+<wire x1="19.05" y1="24.13" x2="10.16" y2="24.13" width="0.254" layer="16"/>
+<wire x1="10.16" y1="24.13" x2="8.89" y2="22.86" width="0.254" layer="16"/>
+<via x="8.89" y="22.86" extent="1-16" drill="0.55"/>
+<wire x1="8.89" y1="22.86" x2="10.16" y2="21.59" width="0.254" layer="1"/>
+<wire x1="10.16" y1="21.59" x2="10.16" y2="12.7" width="0.254" layer="1"/>
+<wire x1="19.05" y1="24.13" x2="25.4" y2="24.13" width="0.254" layer="16"/>
+<wire x1="25.4" y1="24.13" x2="31.875" y2="17.655" width="0.254" layer="16"/>
+<wire x1="8.89" y1="22.86" x2="6.225" y2="20.195" width="0.254" layer="16"/>
+<wire x1="6.225" y1="20.195" x2="6.225" y2="10.16" width="0.254" layer="16"/>
+<wire x1="31.875" y1="17.655" x2="31.875" y2="10.16" width="0.254" layer="16"/>
 </signal>
 <signal name="GND">
 <contactref element="U$1" pad="20"/>
@@ -1771,16 +1772,16 @@ These are design rules for the Advanced Circuits barebones PCBs (4pcb.com).</des
 <contactref element="U$3" pad="P$1"/>
 <contactref element="D2" pad="GND"/>
 <polygon width="0.254" layer="1">
-<vertex x="-1.27" y="-1.27"/>
+<vertex x="-1.27" y="-2.54"/>
 <vertex x="-1.27" y="30.48"/>
 <vertex x="39.37" y="30.48"/>
-<vertex x="39.37" y="-1.27"/>
+<vertex x="39.37" y="-2.54"/>
 </polygon>
 <polygon width="0.254" layer="16">
-<vertex x="-1.27" y="-1.27"/>
+<vertex x="-1.27" y="-2.54"/>
 <vertex x="-1.27" y="30.48"/>
 <vertex x="39.37" y="30.48"/>
-<vertex x="39.37" y="-1.27"/>
+<vertex x="39.37" y="-2.54"/>
 </polygon>
 <contactref element="LS1" pad="2"/>
 </signal>
@@ -1801,39 +1802,39 @@ These are design rules for the Advanced Circuits barebones PCBs (4pcb.com).</des
 <contactref element="U$1" pad="17"/>
 <contactref element="JP1" pad="4"/>
 <wire x1="18.075" y1="9.25" x2="18.075" y2="12.995" width="0.254" layer="1"/>
-<wire x1="22.86" y1="17.78" x2="27.94" y2="17.78" width="0.254" layer="1"/>
-<via x="27.94" y="17.78" extent="1-16" drill="0.55"/>
-<wire x1="27.94" y1="17.78" x2="31.75" y2="21.59" width="0.254" layer="16"/>
-<wire x1="31.75" y1="21.59" x2="33.02" y2="21.59" width="0.254" layer="16"/>
 <via x="33.02" y="21.59" extent="1-16" drill="0.55"/>
 <wire x1="33.02" y1="21.59" x2="34.29" y2="22.86" width="0.254" layer="1"/>
 <wire x1="34.29" y1="22.86" x2="34.29" y2="25.4" width="0.254" layer="1"/>
-<wire x1="18.075" y1="12.995" x2="22.86" y2="17.78" width="0.254" layer="1"/>
+<wire x1="25.4" y1="20.32" x2="27.94" y2="20.32" width="0.254" layer="1"/>
+<wire x1="27.94" y1="20.32" x2="29.21" y2="21.59" width="0.254" layer="1"/>
+<wire x1="29.21" y1="21.59" x2="30.48" y2="21.59" width="0.254" layer="1"/>
+<via x="30.48" y="21.59" extent="1-16" drill="0.55"/>
+<wire x1="18.075" y1="12.995" x2="25.4" y2="20.32" width="0.254" layer="1"/>
+<wire x1="30.48" y1="21.59" x2="33.02" y2="21.59" width="0.254" layer="16"/>
 </signal>
 <signal name="N$5">
 <contactref element="U$1" pad="6"/>
 <contactref element="D2" pad="CKI"/>
-<via x="15.24" y="1.4942" extent="1-16" drill="0.55"/>
-<wire x1="15.24" y1="1.4942" x2="15.4642" y2="1.27" width="0.254" layer="1"/>
-<wire x1="15.4642" y1="1.27" x2="17.78" y2="1.27" width="0.254" layer="1"/>
-<wire x1="17.78" y1="1.27" x2="19.375" y2="2.865" width="0.254" layer="1"/>
-<wire x1="19.375" y1="2.865" x2="19.375" y2="3.4499" width="0.254" layer="1"/>
-<wire x1="12.9242" y1="3.81" x2="10.16" y2="3.81" width="0.254" layer="16"/>
-<via x="10.16" y="3.81" extent="1-16" drill="0.55"/>
-<wire x1="10.16" y1="3.81" x2="3.01" y2="10.96" width="0.254" layer="1"/>
-<wire x1="3.01" y1="10.96" x2="3.01" y2="14.39" width="0.254" layer="1"/>
-<wire x1="15.24" y1="1.4942" x2="12.9242" y2="3.81" width="0.254" layer="16"/>
+<wire x1="19.05" y1="0" x2="19.375" y2="0.325" width="0.254" layer="1"/>
+<wire x1="19.05" y1="0" x2="10.16" y2="0" width="0.254" layer="1"/>
+<via x="10.16" y="0" extent="1-16" drill="0.55"/>
+<wire x1="10.16" y1="0" x2="8.89" y2="1.27" width="0.254" layer="16"/>
+<wire x1="8.89" y1="1.27" x2="8.89" y2="2.54" width="0.254" layer="16"/>
+<via x="8.89" y="2.54" extent="1-16" drill="0.55"/>
+<wire x1="8.89" y1="2.54" x2="3.01" y2="8.42" width="0.254" layer="1"/>
+<wire x1="3.01" y1="8.42" x2="3.01" y2="14.39" width="0.254" layer="1"/>
+<wire x1="19.375" y1="0.325" x2="19.375" y2="3.4499" width="0.254" layer="1"/>
 </signal>
 <signal name="N$6">
 <contactref element="U$1" pad="4"/>
 <contactref element="D2" pad="SDI"/>
-<wire x1="18.075" y1="3.4499" x2="18.075" y2="2.835" width="0.254" layer="1"/>
-<wire x1="18.075" y1="2.835" x2="17.78" y2="2.54" width="0.254" layer="1"/>
-<wire x1="1.27" y1="7.62" x2="1.27" y2="15.24" width="0.254" layer="1"/>
+<wire x1="1.27" y1="15.24" x2="1.27" y2="7.62" width="0.254" layer="1"/>
 <wire x1="1.27" y1="15.24" x2="2.12" y2="16.09" width="0.254" layer="1"/>
 <wire x1="2.12" y1="16.09" x2="3.01" y2="16.09" width="0.254" layer="1"/>
-<wire x1="17.78" y1="2.54" x2="6.35" y2="2.54" width="0.254" layer="1"/>
-<wire x1="6.35" y1="2.54" x2="1.27" y2="7.62" width="0.254" layer="1"/>
+<wire x1="17.78" y1="1.27" x2="18.075" y2="1.565" width="0.254" layer="1"/>
+<wire x1="18.075" y1="1.565" x2="18.075" y2="3.4499" width="0.254" layer="1"/>
+<wire x1="1.27" y1="7.62" x2="7.62" y2="1.27" width="0.254" layer="1"/>
+<wire x1="7.62" y1="1.27" x2="17.78" y2="1.27" width="0.254" layer="1"/>
 </signal>
 <signal name="N$1">
 <contactref element="U$1" pad="13"/>
@@ -1860,9 +1861,9 @@ These are design rules for the Advanced Circuits barebones PCBs (4pcb.com).</des
 <contactref element="JP2" pad="2"/>
 <contactref element="U$1" pad="14"/>
 <wire x1="20.025" y1="9.25" x2="20.025" y2="11.135" width="0.254" layer="1"/>
-<wire x1="31.75" y1="13.97" x2="34.29" y2="16.51" width="0.254" layer="1"/>
-<wire x1="20.025" y1="11.135" x2="22.86" y2="13.97" width="0.254" layer="1"/>
-<wire x1="22.86" y1="13.97" x2="31.75" y2="13.97" width="0.254" layer="1"/>
+<wire x1="34.29" y1="16.51" x2="31.75" y2="13.97" width="0.254" layer="1"/>
+<wire x1="22.86" y1="13.97" x2="20.025" y2="11.135" width="0.254" layer="1"/>
+<wire x1="31.75" y1="13.97" x2="22.86" y2="13.97" width="0.254" layer="1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>

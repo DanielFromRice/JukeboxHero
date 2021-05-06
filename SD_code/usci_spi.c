@@ -39,36 +39,50 @@
  * P1.5 - SCLK
  * P1.6 - SIMO/MOSI
  * P1.7 - SOMI/MISO
+ *
+ *
+ * USCI UCA0 PINS:
+ *
+ * P1.1 - SOMI
+ * P1.2 - SIMO
+ * P1.4 - SCLK
+ * P1.5 - CS (active low)
  */
 void spi_initialize(void) {
-    UCB0CTL1 = UCSWRST | UCSSEL_2;  // Put USCI in reset mode, source USCI clock from SMCLK
-    UCB0CTL0 = SPI_MODE0;          // Use SPI MODE 0 - CPOL=0 CPHA=0
+    UCA0CTL1 = UCSWRST | UCSSEL_2;  // Put USCI in reset mode, source USCI clock from SMCLK
+    UCA0CTL0 = SPI_MODE0;          // Use SPI MODE 0 - CPOL=0 CPHA=0
 
-    P1SEL  |= BIT5 | BIT6 | BIT7;   // configure P1.5, P1.6, P1.7 for USCI
-    P1SEL2 |= BIT5 | BIT6 | BIT7;   // SCLK, MOSI, MISO
+    UCA0MCTL = 0; // CLEARED FOR USCA
 
-    UCB0BR0 = LOBYTE(SPI_250kHz);   // set initial speed to 250kHz (16MHz/400000)
-    UCB0BR1 = HIBYTE(SPI_250kHz);
+//    P1SEL  |= BIT5 | BIT6 | BIT7;   // configure P1.5, P1.6, P1.7 for USCI
+//    P1SEL2 |= BIT5 | BIT6 | BIT7;   // SCLK, MOSI, MISO
+    P1SEL |= BIT1 | BIT2 | BIT4;
+    P1SEL2 |= BIT1 | BIT2 | BIT4;
 
-    P2OUT |= BIT0;                  // CS on P2.0. start out disabled
-    P2DIR |= BIT0;                  // CS configured as output
+    UCA0BR0 = LOBYTE(SPI_250kHz);   // set initial speed to 250kHz (16MHz/400000)
+    UCA0BR1 = HIBYTE(SPI_250kHz);
 
-    UCB0CTL1 &= ~UCSWRST;           // release USCI for operation
+//    P2OUT |= BIT0;                  // CS on P2.0. start out disabled
+//    P2DIR |= BIT0;                  // CS configured as output
+    P1OUT |= BIT5;
+    P1DIR |= BIT5;
+
+    UCA0CTL1 &= ~UCSWRST;           // release USCI for operation
 }
 
 /**
  * spi_send() - send a byte and recv response
  */
 uint8_t spi_send(const uint8_t c) {
-    while (!(IFG2 & UCB0TXIFG))
+    while (!(IFG2 & UCA0TXIFG))
         ; // wait for previous tx to complete
 
-    UCB0TXBUF = c; // setting TXBUF clears the TXIFG flag
+    UCA0TXBUF = c; // setting TXBUF clears the TXIFG flag
 
-    while (!(IFG2 & UCB0RXIFG))
+    while (!(IFG2 & UCA0RXIFG))
         ; // wait for an rx character?
 
-    return UCB0RXBUF; // reading clears RXIFG flag
+    return UCA0RXBUF; // reading clears RXIFG flag
 }
 
 /**
@@ -77,15 +91,15 @@ uint8_t spi_send(const uint8_t c) {
 
 uint8_t spi_receive(void) {
 
-    while (!(IFG2 & UCB0TXIFG))
+    while (!(IFG2 & UCA0TXIFG))
         ; // wait for any previous xmits to complete
 
-    UCB0TXBUF = 0xFF; // Send dummy packet to get data back.
+    UCA0TXBUF = 0xFF; // Send dummy packet to get data back.
 
-    while (!(IFG2 & UCB0RXIFG))
+    while (!(IFG2 & UCA0RXIFG))
         ; // wait to recv a character?
 
-    return UCB0RXBUF; // reading clears RXIFG flag
+    return UCA0RXBUF; // reading clears RXIFG flag
 }
 
 /**
@@ -99,12 +113,12 @@ uint8_t spi_receive(void) {
  */
 
 uint16_t spi_set_divisor(const uint16_t clkdiv) {
-    uint16_t prev_clkdiv = UCB0BR1 << 8 | UCB0BR0;
+    uint16_t prev_clkdiv = UCA0BR1 << 8 | UCA0BR0;
 
-    UCB0CTL1 |= UCSWRST; // go into reset state
-    UCB0BR0 = LOBYTE(clkdiv);
-    UCB0BR1 = HIBYTE(clkdiv);
-    UCB0CTL1 &= ~UCSWRST; // release for operation
+    UCA0CTL1 |= UCSWRST; // go into reset state
+    UCA0BR0 = LOBYTE(clkdiv);
+    UCA0BR1 = HIBYTE(clkdiv);
+    UCA0CTL1 &= ~UCSWRST; // release for operation
 
     return prev_clkdiv;
 }

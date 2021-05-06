@@ -27,8 +27,7 @@
 #include "mmc.h"
 
 
-static const uint32_t SAMPLE_RATE = 15625;
-static const uint32_t SMCLK_FREQ = 16000000;
+static char *fileName = "num.bin";
 
 /*
  * on_pfread_complete() - called when pf_read has a uint8_t for us.
@@ -67,9 +66,9 @@ int main(void) {
 
     spi_initialize();
 
-    P1DIR |= BIT2|BIT0; // P1.2 output
-    P1SEL |= BIT2;      // P1.2 TA1 options
-    P1OUT &= ~BIT0;
+//    P1DIR |= BIT2|BIT0; // P1.2 output
+//    P1SEL |= BIT2;      // P1.2 TA1 options
+//    P1OUT &= ~BIT0;
 
     /* Initialize Button */
     P1DIR &= ~BIT3;     // P1.3 Input
@@ -84,7 +83,6 @@ int main(void) {
         res = pf_mount(&fs);
     } while ( res != FR_OK );
 
-    static char *fileName = "num.bin";
     res = pf_open(fileName);
     if ( res == FR_OK ) {
         P1OUT |= BIT0;

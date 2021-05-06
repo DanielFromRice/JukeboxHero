@@ -16,9 +16,9 @@
 #include "mmc.h"
 
 #define DELAY_100US() __delay_cycles(100)  /* ( 100us/(1/16Mhz) )  = 1600 ticks */
-#define SELECT()    P2OUT &= ~BIT0      /* CS = L */
-#define DESELECT()  P2OUT |= BIT0       /* CS = H */
-#define MMC_SEL     !(P2OUT & BIT0)     /* CS status (true:CS == L) */
+#define SELECT()    P1OUT &= ~BIT5      /* CS = L */
+#define DESELECT()  P1OUT |= BIT5       /* CS = H */
+#define MMC_SEL     !(P1OUT & BIT5)     /* CS status (true:CS == L) */
 
 /* Definitions for MMC/SDC command */
 #define CMD0    (0x40+0)    /* GO_IDLE_STATE */

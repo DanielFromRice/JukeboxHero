@@ -1,0 +1,55 @@
+PSEUDOCODE:
+(As I currently understand it - Daniel)
+
+Init file (main board):
+	get filename somehow
+	sd_init()
+	sd_open(filename)
+	preload_beam_array()
+	change game_state to loop
+
+
+
+Preload Beam array (main board):
+	size <- read_sd(1byte)
+	transmit_i2c(bbb_addr, size) // Send to beam break board
+	for i=0; i<size, i++:
+		data <- read_sd(1byte)
+		transmit_i2c(bbb_addr, data)
+
+
+Song loop (main board):
+	if (ticks >= duration) {
+		if (packet.note_s != NO_CHANGE)
+			transmit_i2c(speaker_s, packet.note_s)
+		if (packet.note_a != NO_CHANGE)
+			transmit_i2c(speaker_a, packet.note_a)
+		if (packet.note_t != NO_CHANGE)
+			transmit_i2c(speaker_t, packet.note_t)
+		if (packet.note_b != NO_CHANGE)
+			transmit_i2c(speaker_b, packet.note_b)
+		if (packet.beam == 1) {
+			transmit_i2c(bbb_addr, packet.beam)
+		}
+		if (duration == END) {
+			transmit_i2c(bbb_addr, END)
+			change game_state to endgame
+		} else {
+			duration = packet.duration
+			ticks = 0
+			load_packet_sd(&packet) // Prepare next packet
+		}
+	}
+
+
+General operation (speakerboard):
+	Init():
+		init speaker pins
+		init timer to smclk (1MHz), up mode
+		init i2c
+		enable i2c interrupt
+
+	i2c interrupt (on getting data):
+		freq = i2c_data()
+		ccr0 = freq
+		ccr2 = freq >> 1

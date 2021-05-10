@@ -24,6 +24,9 @@ struct packet pkt;
 uint8_t data_byte, num_pkts, total_pkts;
 uint16_t ticks, duration;
 
+unsigned char *PTxData;                     // Pointer to TX data
+unsigned char TXByteCtr;
+
 FATFS fs; /* File system object */
 
 #define BB_ADDR     0x50
@@ -69,9 +72,9 @@ int main(void) {
 
             // Read beam array:
             uint8_t i;
-            sd_read_byte(&arr_size);
-            i2c_send_bytes(BB_ADDR, &arr_size, 1);
-            for (i = 0; i < arr_size; i++) { // TODO: Neaten this up to write more bytes at a time
+            sd_read_byte(&total_pkts);
+            i2c_send_bytes(BB_ADDR, &total_pkts, 1);
+            for (i = 0; i < total_pkts; i++) { // TODO: Neaten this up to write more bytes at a time
                 sd_read_byte(&data_byte);
                 i2c_send_bytes(BB_ADDR, &data_byte, 1);
             }

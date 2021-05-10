@@ -17,6 +17,6 @@ void on_pfread_complete(uint16_t value) __attribute__((always_inline));
 void on_pfread_complete(uint16_t value);
 #endif
 
-#define FORWARD(d)  on_pfread_complete((uint16_t)(d))  /* Data forwarding function (Console out in this example) */
+//#define FORWARD(d)  on_pfread_complete((uint16_t)(d))  /* Data forwarding function (Console out in this example) */
 
 #endif /* MMC_H_ */

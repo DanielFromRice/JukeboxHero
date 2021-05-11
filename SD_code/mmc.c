@@ -177,7 +177,7 @@ WORD cnt /* Number of bytes to read (ofs + cnt mus be <= 512) */
                 } while (--cnt);
             } else { /* Forward data to the outgoing stream (depends on the project) */
                 do {
-                    FORWARD(spi_receive());
+//                    FORWARD(spi_receive());
                 } while (--cnt);
             }
 

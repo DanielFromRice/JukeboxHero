@@ -11,7 +11,7 @@ bytes_ip = bytearray([])
 
 input_beams = np.genfromtxt(sys.argv[1], delimiter= ',').astype(np.int)
 
-if input.shape[1] != 4:
+if input_beams.shape[1] != 4:
     raise Exception("Incorrect shape")
 
 size = input_beams.shape[0]
@@ -46,10 +46,6 @@ for row in range(input.shape[0]):
     print(f"val: {input[row,5]}, hex: {val}")
     bytes_ip.extend(val)
 
-# for num in input:
-#     val = int(num).to_bytes((int(num).bit_length() + 7) // 8, byteorder='little')
-#     print(val)
-#     bytes_ip.extend(val)
 
 print(bytes_ip)
 

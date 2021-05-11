@@ -22,7 +22,7 @@ struct packet{
 };
 
 
-void sd_init(FATFS * fs);
+void sd_init();
 FRESULT sd_open(const char * filname);
 FRESULT sd_read_byte(void * addr);
 FRESULT sd_read_packet(struct packet * pckt);

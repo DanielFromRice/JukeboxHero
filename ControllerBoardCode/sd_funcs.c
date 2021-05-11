@@ -7,9 +7,11 @@
 
 #include "sd_funcs.h"
 
+FATFS fs; /* File system object */
+
 
 void
-sd_init(FATFS * fs) {
+sd_init() {
     volatile FRESULT res;
 
     spi_initialize();
@@ -20,7 +22,7 @@ sd_init(FATFS * fs) {
     } while(res != FR_OK);
 
     do {
-        res = pf_mount(fs);
+        res = pf_mount(&fs);
     } while ( res != FR_OK );
 }
 

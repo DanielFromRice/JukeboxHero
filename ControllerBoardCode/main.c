@@ -6,28 +6,39 @@
 
 #include <msp430.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 #include "SPI.h"
 #include "diskio.h"
 #include "pff.h"
 #include "mmc.h"
 #include "sd_funcs.h"
+#include "buttons.h"
 
 void i2c_init(void);
 void i2c_send_bytes(int address, void * data, int len_of_array);
 
-
 static char *fileName = "num.bin";
 
+const char* const paths[] = {"num.bin", "lida_rose.bin", "num.bin"};
+#define MAXSONG  3
+
+extern bool bsel_edge, bup_edge, bdown_edge;
+
+// Gamestate management
 enum gamestate{song_select, loop, endgame} state;
 struct packet pkt;
 uint8_t data_byte, num_pkts, total_pkts;
 uint16_t ticks, duration;
 
-unsigned char *PTxData;                     // Pointer to TX data
-unsigned char TXByteCtr;
+// Display and buttons
+uint16_t display_val;
 
-FATFS fs; /* File system object */
+
+
+// I2C stuff
+unsigned char *PTxData;                 // Pointer to TX data
+unsigned char TXByteCtr;
 
 #define BB_ADDR     0x50
 
@@ -55,43 +66,64 @@ int main(void) {
     DCOCTL = CALDCO_1MHZ;
     __delay_cycles(0xffff); // delay for power up and stabilization
 
+    button_init();
+    button_ready();
     i2c_init();
-    sd_init(&fs);
+    sd_init();
 
     init_wdt();
+
+    display_val = 0;
 
     while (1) {
         switch(state) {
         case song_select:
-            // Add condition to start read on button press
-            if (sd_open(fileName) != FR_OK) {
-                while(1); // Change this later
+            // Start read on button press
+            button_update();
+            if (bup_edge) {
+                if (display_val == MAXSONG)
+                    display_val = 1;
+                else
+                    display_val += 1;
+                bup_edge = false;
             }
-
-            IE1 &= ~WDTIE;             // Disable WDT interrupt
-
-            // Read beam array:
-            uint8_t i;
-            sd_read_byte(&total_pkts);
-            i2c_send_bytes(BB_ADDR, &total_pkts, 1);
-            for (i = 0; i < total_pkts; i++) { // TODO: Neaten this up to write more bytes at a time
-                sd_read_byte(&data_byte);
-                i2c_send_bytes(BB_ADDR, &data_byte, 1);
+            if (bdown_edge) {
+                if (display_val == 0)
+                    display_val = MAXSONG;
+                else
+                    display_val -= 1;
+                bdown_edge = false;
             }
+            if (bsel_edge) {
+                // Load song and enter next state
+                if (sd_open(paths[display_val]) != FR_OK) {
+                    while(1); // Change this later (error handling)
+                }
 
-            sd_read_byte(&total_pkts); // Read number of packets
-            // Load first packet
-            if (sd_read_packet(&pkt) != FR_OK) {
-                while(1);
+                IE1 &= ~WDTIE;             // Disable WDT interrupt
+
+                // Read beam array:
+                uint8_t i;
+                sd_read_byte(&total_pkts);
+                i2c_send_bytes(BB_ADDR, &total_pkts, 1);
+                for (i = 0; i < total_pkts; i++) { // TODO: Neaten this up to write more bytes at a time
+                    sd_read_byte(&data_byte);
+                    i2c_send_bytes(BB_ADDR, &data_byte, 1);
+                }
+
+                sd_read_byte(&total_pkts); // Read number of packets
+                // Load first packet
+                if (sd_read_packet(&pkt) != FR_OK) {
+                    while(1);
+                }
+                num_pkts = 1; // Lists number of packets read in
+
+                state = loop; // Init loop state
+                ticks = 1;
+                duration = 0;
+
+                IE1 |= WDTIE;             // Enable WDT interrupt
             }
-            num_pkts = 1; // Lists number of packets read in
-
-            state = loop; // Init loop state
-            ticks = 1;
-            duration = 0;
-
-            IE1 |= WDTIE;             // Enable WDT interrupt
-
             break;
         case loop:
             ticks += 1;

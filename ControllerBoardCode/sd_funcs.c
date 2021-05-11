@@ -52,10 +52,10 @@ FRESULT
 sd_read_packet(struct packet * pckt) {
     WORD bytes_read;
     FRESULT res;
-    res = pf_read(pckt, sizeof(struct packet), &bytes_read);
+    res = pf_read(pckt, 11, &bytes_read);
     if (res != 0) {
         return res;
-    } else if (bytes_read != sizeof(struct packet)) {
+    } else if (bytes_read != 11) {
         return FR_DISK_ERR;
     } else {
         return FR_OK;

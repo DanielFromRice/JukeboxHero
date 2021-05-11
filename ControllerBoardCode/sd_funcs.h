@@ -13,7 +13,7 @@
 #include "pff.h"
 
 struct packet{
-    uint8_t duration;
+    uint16_t duration;
     uint16_t note_s;
     uint16_t note_a;
     uint16_t note_t;

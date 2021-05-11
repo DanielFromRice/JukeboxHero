@@ -1,13 +1,3 @@
-/*
- *  MSP430 Jukebox Hero Speaker board code
- *
- *  Author:
- *      Daniel Rothfusz, Michael Angino
- *
- *  Based on I2C code from msp430g2xx3_uscib0_i2c_09.c
- *      by D. Dang, Texas Instruments
- *
- */
 #include <msp430.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,7 +9,7 @@
 #define TEN         3
 #define BAS         4
 
-#define BOARDNUM    SOP  // CHANGE THIS VALUE
+#define BOARDNUM    TEN  // CHANGE THIS VALUE
 
 #define SOP_ADDR    0x48
 #define ALT_ADDR    0x49
@@ -74,11 +64,11 @@ int main(void)
   TA1CTL |= TASSEL_2 + MC_1;                 // Set TA1 to use SMCLK, Up mode
   TA1CCTL2 = OUTMOD_2;                      // Output mode 3 - set/reset
 
-  in_data = 0;
+  in_data = 5000;
   int cnt = 2;
 
   // Operational code
-  while(cnt == 2) {
+  while(1) {
       TA1CCR0 = in_data;
       TA1CCR2 = in_data >> 1;
       cnt = receive_bytes(&in_data);

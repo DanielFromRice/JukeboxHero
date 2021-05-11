@@ -1,4 +1,3 @@
-
 /*
  *  MSP430 Jukebox Hero Speaker board code
  *
@@ -70,7 +69,7 @@ int main(void)
 
   // Buzzer/timer setup
   P2SEL |= BIT5;
-  P2SEL2 |= BIT5;
+  P2DIR |= BIT5;
 
   TA1CTL |= TASSEL_2 + MC_1;                 // Set TA1 to use SMCLK, Up mode
   TA1CCTL2 = OUTMOD_2;                      // Output mode 3 - set/reset
@@ -85,7 +84,7 @@ int main(void)
       cnt = receive_bytes(&in_data);
   }
 
-
+  return 0;
 
 }
 

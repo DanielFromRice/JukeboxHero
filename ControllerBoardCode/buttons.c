@@ -17,8 +17,8 @@ uint8_t bsel_reg, bup_reg, bdown_reg;
  */
 void button_init(void) {
     P2DIR &= ~(BIT0 + BIT1 + BIT2); // set to input
-    P2REN = BIT0 + BIT1 + BIT2; // enable pullup/down resistors
-    P2OUT = BIT0 + BIT1 + BIT2; // set resistors to pull up
+    P2REN |= BIT0 + BIT1 + BIT2; // enable pullup/down resistors
+    P2OUT |= BIT0 + BIT1 + BIT2; // set resistors to pull up
 }
 
 

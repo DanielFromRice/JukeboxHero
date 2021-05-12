@@ -18,10 +18,10 @@
 void i2c_init(void);
 void i2c_send_bytes(int address, void * data, int len_of_array);
 
-static char *fileName = "num.bin";
+//static char *fileName = "num.bin";
 
-const char* const paths[] = {"num.bin", "lida_rose.bin", "num.bin"};
-#define MAXSONG  3
+const char* const paths[] = {"AllStar.bin", "LidaRose.bin"};
+#define MAXSONG  2
 
 extern bool bsel_edge, bup_edge, bdown_edge;
 
@@ -53,6 +53,7 @@ unsigned char TXByteCtr;
 void init_wdt(void) {
     BCSCTL3 |= LFXT1S_2;      // ACLK = VLO
     WDTCTL = WDT_ADLY_1_9;    // WDT 1.9ms (~43.3ms since clk 12khz), ACLK, interval timer
+//    WDTCTL = WDT_ADLY_16;
     IE1 |= WDTIE;             // Enable WDT interrupt
 }
 
@@ -73,7 +74,7 @@ int main(void) {
 
     init_wdt();
 
-    display_val = 0;
+    display_val = 1;
 
     while (1) {
         switch(state) {
@@ -88,7 +89,7 @@ int main(void) {
                 bup_edge = false;
             }
             if (bdown_edge) {
-                if (display_val == 0)
+                if (display_val == 1)
                     display_val = MAXSONG;
                 else
                     display_val -= 1;
@@ -96,7 +97,7 @@ int main(void) {
             }
             if (bsel_edge) {
                 // Load song and enter next state
-                if (sd_open(paths[display_val]) != FR_OK) {
+                if (sd_open(paths[display_val-1]) != FR_OK) {
                     while(1); // Change this later (error handling)
                 }
 
@@ -131,14 +132,14 @@ int main(void) {
                 IE1 &= ~WDTIE;             // Disable WDT interrupt
 
                 // Send current packet data
-                if (pkt.note_s != NO_CHANGE)
-                    i2c_send_bytes(SOP_ADDR, &(pkt.note_s), 2);
+//                if (pkt.note_s != NO_CHANGE)
+//                    i2c_send_bytes(SOP_ADDR, &(pkt.note_s), 2);
                 if (pkt.note_a != NO_CHANGE)
                     i2c_send_bytes(ALT_ADDR, &(pkt.note_a), 2);
-                if (pkt.note_t != NO_CHANGE)
-                    i2c_send_bytes(ALT_ADDR, &(pkt.note_t), 2);
+//                if (pkt.note_t != NO_CHANGE)
+//                    i2c_send_bytes(TEN_ADDR, &(pkt.note_t), 2);
                 if (pkt.note_b != NO_CHANGE)
-                    i2c_send_bytes(ALT_ADDR, &(pkt.note_b), 2);
+                    i2c_send_bytes(BAS_ADDR, &(pkt.note_b), 2);
                 if (pkt.beam_state != 0)
                     i2c_send_bytes(BB_ADDR, &(pkt.beam_state), 1);
 
@@ -168,10 +169,11 @@ int main(void) {
             pkt.note_a = 0;
             pkt.note_t = 0;
             pkt.note_b = 0;
-            i2c_send_bytes(SOP_ADDR, &(pkt.note_s), 2);
-            i2c_send_bytes(ALT_ADDR, &(pkt.note_a), 2);
-            i2c_send_bytes(ALT_ADDR, &(pkt.note_t), 2);
-            i2c_send_bytes(ALT_ADDR, &(pkt.note_b), 2);
+            int zero=0;
+//            i2c_send_bytes(SOP_ADDR, &(pkt.note_s), 2);
+            i2c_send_bytes(ALT_ADDR, &zero, 2);
+//            i2c_send_bytes(TEN_ADDR, &(pkt.note_t), 2);
+            i2c_send_bytes(BAS_ADDR, &zero, 2);
 
         }
         __bis_SR_register(LPM0_bits + GIE);

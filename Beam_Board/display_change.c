@@ -5,24 +5,24 @@
  *      Author: Kevin Lata
  */
 #include "display_change.h"
-#include "rgb_interface.h"
 
-uint8_t *led1col1row = &off;
-uint8_t *led1col2row = &off;
-uint8_t *led1col3row = &off;
-uint8_t *led1col4row = &off;
-uint8_t *led2col1row = &off;
-uint8_t *led2col2row = &off;
-uint8_t *led2col3row = &off;
-uint8_t *led2col4row = &off;
-uint8_t *led3col1row = &off;
-uint8_t *led3col2row = &off;
-uint8_t *led3col3row = &off;
-uint8_t *led3col4row = &off;
-uint8_t *led4col1row = &off;
-uint8_t *led4col2row = &off;
-uint8_t *led4col3row = &off;
-uint8_t *led4col4row = &off;
+
+uint8_t *led1col1row =(uint8_t *) &off;
+uint8_t *led1col2row =(uint8_t *) &off;
+uint8_t *led1col3row =(uint8_t *) &off;
+uint8_t *led1col4row = (uint8_t *)&off;
+uint8_t *led2col1row =(uint8_t *) &off;
+uint8_t *led2col2row =(uint8_t *) &off;
+uint8_t *led2col3row =(uint8_t *) &off;
+uint8_t *led2col4row =(uint8_t *) &off;
+uint8_t *led3col1row = (uint8_t *)&off;
+uint8_t *led3col2row = (uint8_t *)&off;
+uint8_t *led3col3row =(uint8_t *) &off;
+uint8_t *led3col4row =(uint8_t *) &off;
+uint8_t *led4col1row = (uint8_t *)&off;
+uint8_t *led4col2row =(uint8_t *) &off;
+uint8_t *led4col3row =(uint8_t *) &off;
+uint8_t *led4col4row =(uint8_t *) &off;
 
 void change_display(uint8_t inval){
     led1col4row = led1col3row;
@@ -43,30 +43,102 @@ void change_display(uint8_t inval){
 
     switch(inval){
     case 1:
-        led1col1row = &blue;
-        led2col1row = &off;
-        led3col1row = &off;
-        led4col1row = &off;
+        led1col1row =(uint8_t *) &blue;
+        led2col1row =(uint8_t *) &off;
+        led3col1row =(uint8_t *) &off;
+        led4col1row =(uint8_t *) &off;
         break;
     case 2:
-        led1col1row = &off;
-        led2col1row = &green;
-        led3col1row = &off;
-        led4col1row = &off;
+        led1col1row =(uint8_t *) &off;
+        led2col1row =(uint8_t *) &green;
+        led3col1row =(uint8_t *) &off;
+        led4col1row =(uint8_t *) &off;
         break;
     case 4:
-        led1col1row = &off;
-        led2col1row = &off;
-        led3col1row = &red;
-        led4col1row = &off;
+        led1col1row =(uint8_t *) &off;
+        led2col1row =(uint8_t *) &off;
+        led3col1row =(uint8_t *) &red;
+        led4col1row =(uint8_t *) &off;
         break;
     case 8:
-        led1col1row = &off;
-        led2col1row = &off;
-        led3col1row = &off;
-        led4col1row = &yellow;
+        led1col1row =(uint8_t *) &off;
+        led2col1row =(uint8_t *) &off;
+        led3col1row =(uint8_t *) &off;
+        led4col1row =(uint8_t *) &yellow;
+        break;
+    default:
+        led1col1row =(uint8_t *) &off;
+        led2col1row =(uint8_t *) &off;
+        led3col1row = (uint8_t *) &off;
+        led4col1row =(uint8_t *) &off;
         break;
     }
+
+    send_leds();
+}
+
+void write_correct(void) {
+    led1col4row =(uint8_t *) &green;
+    led2col4row =(uint8_t *) &green;
+    led3col4row = (uint8_t *) &green;
+    led4col4row =(uint8_t *) &green;
+
+    send_leds();
+}
+
+
+void write_incorrect(void) {
+    led1col4row =(uint8_t *) &red;
+    led2col4row =(uint8_t *) &red;
+    led3col4row = (uint8_t *) &red;
+    led4col4row =(uint8_t *) &red;
+
+    send_leds();
+}
+
+
+void write_score(int score, int song_length) {
+    led1col1row =(uint8_t *) &off;
+    led1col2row =(uint8_t *) &off;
+    led1col3row =(uint8_t *) &off;
+    led1col4row = (uint8_t *)&red;
+    led2col1row =(uint8_t *) &off;
+    led2col2row =(uint8_t *) &off;
+    led2col3row =(uint8_t *) &off;
+    led2col4row =(uint8_t *) &red;
+    led3col1row = (uint8_t *)&off;
+    led3col2row = (uint8_t *)&off;
+    led3col3row =(uint8_t *) &off;
+    led3col4row =(uint8_t *) &red;
+    led4col1row = (uint8_t *)&off;
+    led4col2row =(uint8_t *) &off;
+    led4col3row =(uint8_t *) &off;
+    led4col4row =(uint8_t *) &red;
+
+    if (score > (song_length / 8)) {
+        led1col3row =(uint8_t *) &yellow;
+        led2col3row =(uint8_t *) &yellow;
+        led3col3row = (uint8_t *) &yellow;
+        led4col3row =(uint8_t *) &yellow;
+    }
+    if (score > (song_length / 4)) {
+        led1col2row =(uint8_t *) &green;
+        led2col2row =(uint8_t *) &green;
+        led3col2row = (uint8_t *) &green;
+        led4col2row =(uint8_t *) &green;
+    }
+    if (score > (song_length / 2)) {
+
+        led1col1row =(uint8_t *) &green;
+        led2col1row =(uint8_t *) &green;
+        led3col1row = (uint8_t *) &green;
+        led4col1row =(uint8_t *) &green;
+    }
+
+    send_leds();
+}
+
+static void send_leds(void) {
     rgb_send_start();
     rgb_send_frame(led1col1row, false);
     rgb_send_frame(led1col2row, false);
@@ -86,5 +158,3 @@ void change_display(uint8_t inval){
     rgb_send_frame(led4col4row, false);
     rgb_send_end();
 }
-
-

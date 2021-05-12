@@ -43,30 +43,56 @@ void change_display(uint8_t inval){
 
     switch(inval){
     case 1:
-        led1col1row = &blue;
-        led2col1row = &off;
-        led3col1row = &off;
-        led4col1row = &off;
+        led1col1row =(uint8_t *) &blue;
+        led2col1row =(uint8_t *) &off;
+        led3col1row =(uint8_t *) &off;
+        led4col1row =(uint8_t *) &off;
         break;
     case 2:
-        led1col1row = &off;
-        led2col1row = &green;
-        led3col1row = &off;
-        led4col1row = &off;
+        led1col1row =(uint8_t *) &off;
+        led2col1row =(uint8_t *) &green;
+        led3col1row =(uint8_t *) &off;
+        led4col1row =(uint8_t *) &off;
         break;
     case 4:
-        led1col1row = &off;
-        led2col1row = &off;
-        led3col1row = &red;
-        led4col1row = &off;
+        led1col1row =(uint8_t *) &off;
+        led2col1row =(uint8_t *) &off;
+        led3col1row =(uint8_t *) &red;
+        led4col1row =(uint8_t *) &off;
         break;
     case 8:
-        led1col1row = &off;
-        led2col1row = &off;
-        led3col1row = &off;
-        led4col1row = &yellow;
+        led1col1row =(uint8_t *) &off;
+        led2col1row =(uint8_t *) &off;
+        led3col1row =(uint8_t *) &off;
+        led4col1row =(uint8_t *) &yellow;
+        break;
+    default:
+        led1col1row =(uint8_t *) &off;
+        led2col1row =(uint8_t *) &off;
+        led3col1row = (uint8_t *) &off;
+        led4col1row =(uint8_t *) &off;
         break;
     }
+//    if ((inval & BIT0) == BIT0) {
+//            led1col1row = (uint8_t *)&blue;
+//        } else {
+//            led1col1row = (uint8_t *)&off;
+//        }
+//        if ((inval & BIT1) == BIT1) {
+//            led2col1row = (uint8_t *)&green;
+//        } else {
+//            led2col1row = (uint8_t *)&off;
+//        }
+//        if ((inval & BIT2) == BIT2) {
+//            led3col1row = (uint8_t *)&red;
+//        } else {
+//            led3col1row = (uint8_t *)&off;
+//        }
+//        if ((inval & BIT3) == BIT3) {
+//            led4col1row = (uint8_t *)&yellow;
+//        } else {
+//            led4col1row = (uint8_t *)&off;
+//        }
     rgb_send_start();
     rgb_send_frame(led1col1row, false);
     rgb_send_frame(led1col2row, false);
@@ -86,5 +112,3 @@ void change_display(uint8_t inval){
     rgb_send_frame(led4col4row, false);
     rgb_send_end();
 }
-
-

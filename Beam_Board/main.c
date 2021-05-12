@@ -1,4 +1,4 @@
-#include <msp430.h> 
+#include <msp430.h>
 #include <stdint.h>
 #include "rgb_interface.h"
 #include "display_change.h"
@@ -42,6 +42,17 @@ int new_iter = 0;
 
 int main(void)
 {
+
+    WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
+    P1SEL |= BIT6 + BIT7;                     // Assign I2C pins to USCI_B0
+    P1SEL2|= BIT6 + BIT7;                     // Assign I2C pins to USCI_B0
+    UCB0CTL1 |= UCSWRST;                      // Enable SW reset
+    UCB0CTL0 = UCMODE_3 + UCSYNC;             // I2C Slave, synchronous mode
+    UCB0I2COA = 0x50;                         // Own Address is 048h
+    UCB0CTL1 &= ~UCSWRST;                     // Clear SW reset, resume operation
+    UCB0I2CIE |= UCSTPIE + UCSTTIE;           // Enable STT and STP interrupt
+    IE2 |= UCB0RXIE;                          // Enable RX interrupt
+
     enum state_enum{Start, ListenForInt, SendToBoard} state;
     state = Start;
     //The following sets up watchdog timer related values
@@ -51,13 +62,15 @@ int main(void)
     DCOCTL = CALDCO_16MHZ;      // Set DCO step + modulation */
     BCSCTL3 |= LFXT1S_2;        // ACLK = VLO
 
+    uint8_t status =0;
+
     //P1DIR |= 0x01;
     //P2DIR |= BIT5;
-	
+
 
     int Button_LED_map[] = {BIT0,BIT1,0,BIT2,0,0,0,BIT3};
     int current_bit; //hex value that represents dec number 0-3
-    init_wdt();
+
     init_buttons();
     rgb_init_spi();
 
@@ -79,17 +92,19 @@ int main(void)
             main_flag = 0;
             player_flag = 0;
             state = ListenForInt;
+//            init_wdt();
         }
         else if (state==ListenForInt){
             while(listenout == 0){ // use another one to exit
-                __bis_SR_register(LPM0_bits + GIE);
+//                __bis_SR_register(LPM0_bits + GIE);
+                receive_bytes(&status);
                 if (main_flag == 1){ // main board i2c run interrupt
                     if (sequence_iter > beam_values_size+2){ // if the song is 150 and we padded by 3, the last actual song value will
                         listenout = 99; //display at the end of sequence when sequence_iter = 152// listenout = 99 is end of song flag
                         sequence_iter = 0;
                     }
                     else if (sequence_iter < beam_values_size){
-                        current_button = beam_values[sequence_iter-3]; // it was at the top 3 iters ago
+                        current_button = beam_values[sequence_iter]; // it was at the top 3 iters ago
                         current_bit = Button_LED_map[current_button];
                         //current_check = ((BIT0 + BIT1 + BIT2 + BIT3) & (~current_bit));
                         change_display(current_button);
@@ -123,7 +138,7 @@ int main(void)
     }
 
 
-	return 0;
+    return 0;
 }
 
 

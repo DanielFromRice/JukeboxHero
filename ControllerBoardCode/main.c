@@ -53,6 +53,7 @@ unsigned char TXByteCtr;
 void init_wdt(void) {
     BCSCTL3 |= LFXT1S_2;      // ACLK = VLO
     WDTCTL = WDT_ADLY_1_9;    // WDT 1.9ms (~43.3ms since clk 12khz), ACLK, interval timer
+//    WDTCTL = WDT_ADLY_16;
     IE1 |= WDTIE;             // Enable WDT interrupt
 }
 
@@ -79,24 +80,24 @@ int main(void) {
         switch(state) {
         case song_select:
             // Start read on button press
-            button_update();
-            if (bup_edge) {
-                if (display_val == MAXSONG)
-                    display_val = 1;
-                else
-                    display_val += 1;
-                bup_edge = false;
-            }
-            if (bdown_edge) {
-                if (display_val == 0)
-                    display_val = MAXSONG;
-                else
-                    display_val -= 1;
-                bdown_edge = false;
-            }
-            if (bsel_edge) {
+//            button_update();
+//            if (bup_edge) {
+//                if (display_val == MAXSONG)
+//                    display_val = 1;
+//                else
+//                    display_val += 1;
+//                bup_edge = false;
+//            }
+//            if (bdown_edge) {
+//                if (display_val == 0)
+//                    display_val = MAXSONG;
+//                else
+//                    display_val -= 1;
+//                bdown_edge = false;
+//            }
+//            if (bsel_edge) {
                 // Load song and enter next state
-                if (sd_open(paths[display_val]) != FR_OK) {
+                if (sd_open("LidaRose.bin") != FR_OK) {
                     while(1); // Change this later (error handling)
                 }
 
@@ -123,7 +124,7 @@ int main(void) {
                 duration = 0;
 
                 IE1 |= WDTIE;             // Enable WDT interrupt
-            }
+//            }
             break;
         case loop:
             ticks += 1;
@@ -135,10 +136,10 @@ int main(void) {
                     i2c_send_bytes(SOP_ADDR, &(pkt.note_s), 2);
                 if (pkt.note_a != NO_CHANGE)
                     i2c_send_bytes(ALT_ADDR, &(pkt.note_a), 2);
-                if (pkt.note_t != NO_CHANGE)
-                    i2c_send_bytes(ALT_ADDR, &(pkt.note_t), 2);
-                if (pkt.note_b != NO_CHANGE)
-                    i2c_send_bytes(ALT_ADDR, &(pkt.note_b), 2);
+//                if (pkt.note_t != NO_CHANGE)
+//                    i2c_send_bytes(TEN_ADDR, &(pkt.note_t), 2);
+//                if (pkt.note_b != NO_CHANGE)
+//                    i2c_send_bytes(BAS_ADDR, &(pkt.note_b), 2);
                 if (pkt.beam_state != 0)
                     i2c_send_bytes(BB_ADDR, &(pkt.beam_state), 1);
 

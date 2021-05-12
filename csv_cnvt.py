@@ -35,7 +35,7 @@ print(f"size: {size}")
 bytes_ip.append(size)
 
 for row in range(input.shape[0]):
-    val = int(input[row,0]).to_bytes(1, 'little')
+    val = int(input[row,0]).to_bytes(2, 'little')
     print(f"val: {input[row,0]}, hex: {val}")
     bytes_ip.extend(val)
     for col in range(1, 5):

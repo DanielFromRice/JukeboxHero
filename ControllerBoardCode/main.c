@@ -1,7 +1,16 @@
 /*
+ *  main.c
  *
+ *  Author:
+ *      Daniel Rothfusz, Michael Angino, Mac Carr, Kevin Lata, Elise Gibney
  *
- *  Modules taken from: https://gist.github.com/RickKimball/2407353
+ *  Manages the game loop for the main module for Jukebox Hero project.
+ *
+ *  Selects song, then reads data from the SD card. Loads the preload array
+ *  of beam data to the beam module, then dynamically loads and broadcasts
+ *  song data to the speaker modules.
+ *
+ *  SD modules adapted from: https://gist.github.com/RickKimball/2407353
  */
 
 #include <msp430.h>
@@ -15,14 +24,14 @@
 #include "sd_funcs.h"
 #include "buttons.h"
 
+void init_wdt(void);
 void i2c_init(void);
 void i2c_send_bytes(int address, void * data, int len_of_array);
-
-//static char *fileName = "num.bin";
 
 const char* const paths[] = {"AllStar.bin", "LidaRose.bin"};
 #define MAXSONG  2
 
+// Button variables
 extern bool bsel_edge, bup_edge, bdown_edge;
 
 // Gamestate management
@@ -34,154 +43,25 @@ uint16_t ticks, duration;
 // Display and buttons
 uint16_t display_val;
 
-
-
 // I2C stuff
 unsigned char *PTxData;                 // Pointer to TX data
 unsigned char TXByteCtr;
 
-#define BB_ADDR     0x50
+#define BB_ADDR     0x50               // Break beam board address
 
-#define SOP_ADDR    0x48
+#define SOP_ADDR    0x48               // Speaker board addresses
 #define ALT_ADDR    0x49
 #define TEN_ADDR    0x4A
 #define BAS_ADDR    0x4B
 
-#define NO_CHANGE   256
+#define NO_CHANGE   256                // Hardcoded value in binary data
 
 
 void init_wdt(void) {
     BCSCTL3 |= LFXT1S_2;      // ACLK = VLO
-    WDTCTL = WDT_ADLY_1_9;    // WDT 1.9ms (~43.3ms since clk 12khz), ACLK, interval timer
-//    WDTCTL = WDT_ADLY_16;
+    WDTCTL = WDT_ADLY_1_9;    // WDT 1.9ms (~43.3ms since clk actually 12khz), ACLK, interval timer
     IE1 |= WDTIE;             // Enable WDT interrupt
 }
-
-
-int main(void) {
-
-    WDTCTL = WDTPW + WDTHOLD; // Stop WDT
-
-    DCOCTL = 0; // Run at 1 MHz
-    BCSCTL1 = CALBC1_1MHZ;
-    DCOCTL = CALDCO_1MHZ;
-    __delay_cycles(0xffff); // delay for power up and stabilization
-
-    button_init();
-    button_ready();
-    i2c_init();
-    sd_init();
-
-    init_wdt();
-
-    display_val = 1;
-
-    while (1) {
-        switch(state) {
-        case song_select:
-            // Start read on button press
-            button_update();
-            if (bup_edge) {
-                if (display_val == MAXSONG)
-                    display_val = 1;
-                else
-                    display_val += 1;
-                bup_edge = false;
-            }
-            if (bdown_edge) {
-                if (display_val == 1)
-                    display_val = MAXSONG;
-                else
-                    display_val -= 1;
-                bdown_edge = false;
-            }
-            if (bsel_edge) {
-                // Load song and enter next state
-                if (sd_open(paths[display_val-1]) != FR_OK) {
-                    while(1); // Change this later (error handling)
-                }
-
-                IE1 &= ~WDTIE;             // Disable WDT interrupt
-
-                // Read beam array:
-                uint8_t i;
-                sd_read_byte(&total_pkts);
-                i2c_send_bytes(BB_ADDR, &total_pkts, 1);
-                for (i = 0; i < total_pkts; i++) { // TODO: Neaten this up to write more bytes at a time
-                    sd_read_byte(&data_byte);
-                    i2c_send_bytes(BB_ADDR, &data_byte, 1);
-                }
-
-                sd_read_byte(&total_pkts); // Read number of packets
-                // Load first packet
-                if (sd_read_packet(&pkt) != FR_OK) {
-                    while(1);
-                }
-                num_pkts = 1; // Lists number of packets read in
-
-                state = loop; // Init loop state
-                ticks = 1;
-                duration = 0;
-
-                IE1 |= WDTIE;             // Enable WDT interrupt
-            }
-            break;
-        case loop:
-            ticks += 1;
-            if (ticks >= duration) {
-                IE1 &= ~WDTIE;             // Disable WDT interrupt
-
-                // Send current packet data
-//                if (pkt.note_s != NO_CHANGE)
-//                    i2c_send_bytes(SOP_ADDR, &(pkt.note_s), 2);
-                if (pkt.note_a != NO_CHANGE)
-                    i2c_send_bytes(ALT_ADDR, &(pkt.note_a), 2);
-//                if (pkt.note_t != NO_CHANGE)
-//                    i2c_send_bytes(TEN_ADDR, &(pkt.note_t), 2);
-                if (pkt.note_b != NO_CHANGE)
-                    i2c_send_bytes(BAS_ADDR, &(pkt.note_b), 2);
-                if (pkt.beam_state != 0)
-                    i2c_send_bytes(BB_ADDR, &(pkt.beam_state), 1);
-
-                ticks = 0;
-                duration = pkt.duration;
-
-                IE1 |= WDTIE;             // Enable WDT interrupt
-
-                if (num_pkts >= total_pkts) {
-                    state = endgame;
-                    ticks = 0;
-                    break;
-                }
-                if (sd_read_packet(&pkt) != FR_OK) {
-                    while(1);
-                }
-                num_pkts += 1;
-            }
-            break;
-        case endgame:
-            // TODO: Poll for score from bb board
-
-            IE1 &= ~WDTIE;             // Disable WDT interrupt
-
-            // Write "off" to each board
-            pkt.note_s = 0;
-            pkt.note_a = 0;
-            pkt.note_t = 0;
-            pkt.note_b = 0;
-            int zero=0;
-//            i2c_send_bytes(SOP_ADDR, &(pkt.note_s), 2);
-            i2c_send_bytes(ALT_ADDR, &zero, 2);
-//            i2c_send_bytes(TEN_ADDR, &(pkt.note_t), 2);
-            i2c_send_bytes(BAS_ADDR, &zero, 2);
-
-        }
-        __bis_SR_register(LPM0_bits + GIE);
-    }
-
-    return 0;
-}
-
 
 void i2c_init(void) {
     P1SEL |= BIT6 + BIT7;                     // Assign I2C pins to USCI_B0
@@ -205,6 +85,131 @@ void i2c_send_bytes(int address, void * data, int len_of_array) {
    UCB0CTL1 |= UCTR + UCTXSTT;             // I2C TX, start condition
    __bis_SR_register(LPM0_bits + GIE);        // Enter LPM0 w/ interrupts
    // Remain in LPM0 until all data is TX'd
+}
+
+
+int main(void) {
+
+    // INITIALIZATION
+    WDTCTL = WDTPW + WDTHOLD; // Stop WDT
+
+    DCOCTL = 0; // Run at 1 MHz
+    BCSCTL1 = CALBC1_1MHZ;
+    DCOCTL = CALDCO_1MHZ;
+    __delay_cycles(0xffff); // delay for power up and stabilization
+
+    button_init();
+    button_ready();
+    i2c_init();
+    sd_init();
+
+    init_wdt();
+
+    display_val = 1;
+
+    // GAME LOOP
+    while (1) {
+        switch(state) {
+        case song_select: // Initial state, selects a song and preloads data
+            // Start read on button press
+            button_update();
+            if (bup_edge) {
+                if (display_val == MAXSONG)
+                    display_val = 1;
+                else
+                    display_val += 1;
+                bup_edge = false;
+            }
+            if (bdown_edge) {
+                if (display_val == 1)
+                    display_val = MAXSONG;
+                else
+                    display_val -= 1;
+                bdown_edge = false;
+            }
+            if (bsel_edge) {
+                // Load song and enter next state (songs are 1 indexed)
+                if (sd_open(paths[display_val-1]) != FR_OK) {
+                    while(1);
+                }
+
+                IE1 &= ~WDTIE;             // Disable WDT interrupt
+
+                // Read beam array:
+                uint8_t i;
+                sd_read_byte(&total_pkts);
+                i2c_send_bytes(BB_ADDR, &total_pkts, 1);
+                for (i = 0; i < total_pkts; i++) {
+                    sd_read_byte(&data_byte); // Sends one byte at a time to avoid storing lots of data
+                    i2c_send_bytes(BB_ADDR, &data_byte, 1);
+                }
+
+                sd_read_byte(&total_pkts); // Read number of packets
+                // Load first packet
+                if (sd_read_packet(&pkt) != FR_OK) {
+                    while(1);
+                }
+                num_pkts = 1;               // Lists number of packets read in
+
+                state = loop;               // Init loop state
+                ticks = 1;
+                duration = 0;
+
+                IE1 |= WDTIE;               // Enable WDT interrupt
+            }
+            break;
+        case loop: // Main game state, dynamically loads packet data and broadcasts
+            ticks += 1;
+            if (ticks >= duration) {
+                IE1 &= ~WDTIE;             // Disable WDT interrupt
+
+                // Send current packet data
+//                if (pkt.note_s != NO_CHANGE)
+//                    i2c_send_bytes(SOP_ADDR, &(pkt.note_s), 2);
+                if (pkt.note_a != NO_CHANGE)
+                    i2c_send_bytes(ALT_ADDR, &(pkt.note_a), 2);
+//                if (pkt.note_t != NO_CHANGE)
+//                    i2c_send_bytes(TEN_ADDR, &(pkt.note_t), 2);
+                if (pkt.note_b != NO_CHANGE)
+                    i2c_send_bytes(BAS_ADDR, &(pkt.note_b), 2);
+                if (pkt.beam_state != 0)
+                    i2c_send_bytes(BB_ADDR, &(pkt.beam_state), 1);
+
+                ticks = 0;
+                duration = pkt.duration;
+
+                IE1 |= WDTIE;             // Enable WDT interrupt
+
+                if (num_pkts >= total_pkts) {
+                    state = endgame;     // Switch to end of game when all packets are read
+                    ticks = 0;
+                    break;
+                }
+                if (sd_read_packet(&pkt) != FR_OK) {
+                    while(1);
+                }
+                num_pkts += 1;
+            }
+            break;
+        case endgame:
+            IE1 &= ~WDTIE;             // Disable WDT interrupt
+
+            // Write "off" to each board
+            pkt.note_s = 0;
+            pkt.note_a = 0;
+            pkt.note_t = 0;
+            pkt.note_b = 0;
+            int zero=0;
+//            i2c_send_bytes(SOP_ADDR, &(pkt.note_s), 2);
+            i2c_send_bytes(ALT_ADDR, &zero, 2);
+//            i2c_send_bytes(TEN_ADDR, &(pkt.note_t), 2);
+            i2c_send_bytes(BAS_ADDR, &zero, 2);
+
+        }
+        __bis_SR_register(LPM0_bits + GIE);
+    }
+
+    return 0;
 }
 
 //------------------------------------------------------------------------------

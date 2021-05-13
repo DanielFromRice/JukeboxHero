@@ -39,3 +39,10 @@ Overall, the game should function similarly to Guitar Hero. Lights descend
 along the DotStar strips, signaling which beam break sensor the player should
 trip. The order of these loosely correspond to a song that is playing, which
 produces multiple tones over a collection of piezzo buzzers. 
+
+To run:
+Once boards are wired up with the appropriate hardware, open 3 projects in 
+Code Composer Studio. Load all the code from ControllerBoardCode to the 
+Controller board, load code from the Break_Beam folder to the Break Beam 
+Board, and load the code from SpeakerBoardCode to each speaker board, 
+ensuring that each one gets a different I2C address.

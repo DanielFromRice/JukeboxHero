@@ -3,11 +3,12 @@
  *
  *  Created on: May 11, 2021
  *      Author: Kevin Lata
+ *      This source file is in charge of showing/updating the display on the strip LEDs
  */
 #include "display_change.h"
 
 
-uint8_t *led1col1row =(uint8_t *) &off;
+uint8_t *led1col1row =(uint8_t *) &off; // All of these are state variables for each individual LED in the strip LED display
 uint8_t *led1col2row =(uint8_t *) &off;
 uint8_t *led1col3row =(uint8_t *) &off;
 uint8_t *led1col4row = (uint8_t *)&off;
@@ -24,9 +25,9 @@ uint8_t *led4col2row =(uint8_t *) &off;
 uint8_t *led4col3row =(uint8_t *) &off;
 uint8_t *led4col4row =(uint8_t *) &off;
 
-void change_display(uint8_t inval){
-    led1col4row = led1col3row;
-    led1col3row = led1col2row;
+void change_display(uint8_t inval){ // This function updates the display given the signal from the main board to update the display
+    led1col4row = led1col3row; // These lines update each LED to be the value that the previous LED on the same column previously was
+    led1col3row = led1col2row; // starting from the bottom row going on upwards
     led1col2row = led1col1row;
 
     led2col4row = led2col3row;
@@ -41,8 +42,8 @@ void change_display(uint8_t inval){
     led4col3row = led4col2row;
     led4col2row = led4col1row;
 
-    switch(inval){
-    case 1:
+    switch(inval){ // Depending on the value input into this function, this switch case turns on the appropriate LED on the top row
+    case 1: // for the current song/display iteration
         led1col1row =(uint8_t *) &blue;
         led2col1row =(uint8_t *) &off;
         led3col1row =(uint8_t *) &off;
@@ -77,8 +78,8 @@ void change_display(uint8_t inval){
     send_leds();
 }
 
-void write_correct(void) {
-    led1col4row =(uint8_t *) &green;
+void write_correct(void) { // This function displays the bottom row of the array as all green to show the player that they
+    led1col4row =(uint8_t *) &green; // broke the correct beam/their score increased
     led2col4row =(uint8_t *) &green;
     led3col4row = (uint8_t *) &green;
     led4col4row =(uint8_t *) &green;
@@ -87,8 +88,8 @@ void write_correct(void) {
 }
 
 
-void write_incorrect(void) {
-    led1col4row =(uint8_t *) &red;
+void write_incorrect(void) { // This function displays the bottom row of the array as all red to show the player that they
+    led1col4row =(uint8_t *) &red; // broke the incorrect beam/their score decreased
     led2col4row =(uint8_t *) &red;
     led3col4row = (uint8_t *) &red;
     led4col4row =(uint8_t *) &red;
@@ -97,9 +98,9 @@ void write_incorrect(void) {
 }
 
 
-void write_score(int score, int song_length) {
-    led1col1row =(uint8_t *) &off;
-    led1col2row =(uint8_t *) &off;
+void write_score(int score, int song_length) { // This function displays the player's final score on the strip LEDs
+    led1col1row =(uint8_t *) &off; // depending on how well the player did, more rows of LEDs will light up if the player did a better job
+    led1col2row =(uint8_t *) &off; // and got a higher score
     led1col3row =(uint8_t *) &off;
     led1col4row = (uint8_t *)&red;
     led2col1row =(uint8_t *) &off;
@@ -138,7 +139,7 @@ void write_score(int score, int song_length) {
     send_leds();
 }
 
-static void send_leds(void) {
+static void send_leds(void) { // This function just sends the necessary frames via SPI to get the desired display up on the strip LEDs
     rgb_send_start();
     rgb_send_frame(led1col1row, false);
     rgb_send_frame(led1col2row, false);
